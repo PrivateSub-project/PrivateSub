@@ -2,6 +2,7 @@
 
 ## Members
 
+<div align="center">
 | Name            | Github     | Email                  |
 | --------------- | ---------- | ---------------------- |
 | James Bilik     | bjam3s     | jbilik@myseneca.ca     |
@@ -9,7 +10,7 @@
 | Majd Homsi      |            | mhomsi1@myseneca.ca    |
 | Nenad Ostojic   | nostojic   | nostojic@myseneca.ca   |
 | Yuri Yoon       | yulque     | yryoon@myseneca.ca     |
-
+</div>
 ### Background
 
 ---
