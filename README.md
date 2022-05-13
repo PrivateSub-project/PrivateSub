@@ -6,7 +6,7 @@
 | --------------- | ---------- | ---------------------- |
 | James Bilik     | bjam3s     | jbilik@myseneca.ca     |
 | Kamyab Rouhifar | karouhifar | karouhifar@myseneca.ca |
-| Majd Homsi      | Majd Homsi | mhomsi1@myseneca.ca    |
+| Majd Homsi      | MajdHomsi  | mhomsi1@myseneca.ca    |
 | Nenad Ostojic   | nostojic   | nostojic@myseneca.ca   |
 | Yuri Yoon       | yulque     | yryoon@myseneca.ca     |
 
