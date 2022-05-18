@@ -1,0 +1,31 @@
+{
+  "name": "private-sub",
+  "private": "true",
+  "version": "0.0.1",
+  "description": "BackendSide of Application",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon ./src/server.js --watch src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --config .eslintrc.js src/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrivateSub-project/PrivateSub.git"
+  },
+  "author": "Private Sub Server",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^8.15.0",
+    "nodemon": "^2.0.16",
+    "prettier": "2.6.2"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "helmet": "^5.0.2",
+    "stoppable": "^1.1.0"
+  }
+}
