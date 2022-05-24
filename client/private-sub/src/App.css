@@ -1,1 +1,9 @@
-/* eslint-disable */
+@import url("./utils/global.css");
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+    background-color: var(--main-color);
+}
