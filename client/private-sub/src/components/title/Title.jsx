@@ -26,7 +26,7 @@ export default function Title() {
                     <div className="h-96 flex flex-col justify-center  m-auto">
                         <img
                             src="https://i.ibb.co/RyP1NB5/Card-1-1.png"
-                            className="img-fluid w-7/12 m-auto"
+                            className="img-fluid sm:w-7/12 m-auto"
                             alt="card"
                         />
                     </div>

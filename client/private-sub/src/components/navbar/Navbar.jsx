@@ -43,7 +43,7 @@ export default function Navbar() {
                     className={
                         !nav
                             ? 'hidden'
-                            : 'absolute w-full px-8 z-10 backdrop-blur-lg bg-opacity-50 bg-gray-800'
+                            : 'absolute w-full px-8 z-10 backdrop-blur-lg bg-opacity-80 bg-gray-800'
                     }
                 >
                     <ul>
