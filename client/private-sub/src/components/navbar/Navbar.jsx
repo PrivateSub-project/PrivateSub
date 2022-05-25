@@ -26,7 +26,7 @@ export default function Navbar() {
                             <li>Contact Us</li>
                             <li>About</li>
                         </ul>
-                        <button className="px-8 py-3">Sign In</button>
+                        <button className="px-8">Sign In</button>
                     </div>
                     <div
                         className="md:hidden cursor-pointer"
@@ -60,7 +60,7 @@ export default function Navbar() {
                             About
                         </li>
                         <div className="flex flex-col my-4 signIn__shadow transition-colors">
-                            <button className="px-8 py-3">Sign In</button>
+                            <button className="px-8 py-2">Sign In</button>
                         </div>
                     </ul>
                 </div>

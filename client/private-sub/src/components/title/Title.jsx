@@ -5,9 +5,9 @@ export default function Title() {
         <Container fluid>
             <Row className="mt-20">
                 <Col xs={12} md={6}>
-                    <div className="w-full h-96 flex flex-col justify-start md:mx-6">
+                    <div className="w-full flex flex-col justify-start md:mx-6">
                         <div className="mt-1">
-                            <h1 className="gradient__text text-3xl lg:text-5xl font-bold overflow-visible">
+                            <h1 className="gradient__text text-3xl lg:text-4xl xl:text-5xl font-bold overflow-visible">
                                 Modern Virtual Credit Card Generation Platform
                                 Allover Canadian Provinces
                             </h1>
@@ -21,9 +21,9 @@ export default function Title() {
                             </p>
                         </div>
 
-                        <div className="flex justify-end items-center text-2xl font-bold text-white">
+                        <div className="flex justify-center md:justify-end items-center text-2xl my-6 font-bold text-white">
                             <button className="px-4 py-2 mr-6 bg-orange-600">
-                                sign In
+                                Sign In
                             </button>
                             <button className="px-4 py-2 bg-orange-600">
                                 Register
@@ -35,7 +35,7 @@ export default function Title() {
                     <div className="h-96 flex flex-col justify-center  m-auto">
                         <img
                             src="https://i.ibb.co/RyP1NB5/Card-1-1.png"
-                            className="img-fluid sm:w-7/12 m-auto"
+                            className="sm:w-4/6 m-auto"
                             alt="card"
                         />
                     </div>
