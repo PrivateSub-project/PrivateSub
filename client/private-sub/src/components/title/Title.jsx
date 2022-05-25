@@ -20,6 +20,15 @@ export default function Title() {
                                 vulputate metus at lacinia condimentum.
                             </p>
                         </div>
+
+                        <div className="flex justify-end items-center text-2xl font-bold text-white">
+                            <button className="px-4 py-2 mr-6 bg-orange-600">
+                                sign In
+                            </button>
+                            <button className="px-4 py-2 bg-orange-600">
+                                Register
+                            </button>
+                        </div>
                     </div>
                 </Col>
                 <Col xs={12} md={6}>
