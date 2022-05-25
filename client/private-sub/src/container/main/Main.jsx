@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Feature } from '../../components';
 export default function Main() {
-    return <div>Main</div>;
+    return <Feature />;
 }

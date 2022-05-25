@@ -19,14 +19,16 @@ export default function Navbar() {
                             PrivateSub
                         </h1>
                     </div>
-                    <div className="hidden md:flex pr-4">
-                        <ul className="hidden md:flex">
+                    <div className="hidden md:flex pr-4 mr-6">
+                        <ul className="hidden md:flex items-center">
                             <li>Dashboard</li>
                             <li>Virtual Card</li>
                             <li>Contact Us</li>
                             <li>About</li>
+                            <li className="flex border-l-2 border-zinc-500 m-auto h-5">
+                                <span className="self-center"> Sign In</span>
+                            </li>
                         </ul>
-                        <button className="px-8">Sign In</button>
                     </div>
                     <div
                         className="md:hidden cursor-pointer"
