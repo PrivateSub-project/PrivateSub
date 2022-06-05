@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  }
+
+label {
+  font-size: .7rem;
+}
+
+input.form-control, input.form-control:focus {
+  background: #F0F0FF;
+}
+.error {
+  position: absolute;
+  color: red;
+  font-size: .6rem;
+}
+.signIn__url{
+  background-image: url(https://lh3.googleusercontent.com/g0oxer1SicpCWmQc-zbed4hArDziiV4_HcNL7o0RPZWzq-YmvFNRrP5AD6dgjwMR2pzM3EERsURND2ZQm270xIS8QR2vDJmeDLzRZtmJqQvuw7SKmUOnU5nMwPVeN8SEo1O3lgyb6w=w2400);
+  background-repeat: no-repeat;
+  background-size: contain;
+  backface-visibility: visible;
+  background-origin: padding-box;
+  background-position: left center;
+}
+.bk__transition{
+  z-index: 1;
+  width: 100%;
+  content: "";
+  opacity: 1;
+  -webkit-transition: opacity 1s ease-out;
+  -o-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+  position: absolute;
+  height: 100%;
+  pointer-events: none;
+  min-height: 100vh; 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#040C18', endColorstr='#FFFF00', GradientType=0 );
+  background: -webkit-gradient(linear,right top, left top,from(rgba(32,33,36,.2)),color-stop(65em, #202124));
+  background: -o-linear-gradient(right,rgba(32,33,36,.2) 0%,#202124 65em 0%);
+  background: linear-gradient(270deg,rgba(32,33,36,.2) 0%,#202124 68em 0%);
+}
