@@ -3,5 +3,9 @@ import { SignInForm } from '../../components';
 import './SignIn.css';
 
 export default function SignIn() {
-    return <SignInForm />;
+    return (
+        <div className="screen__body">
+            <SignInForm />
+        </div>
+    );
 }

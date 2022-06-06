@@ -8,6 +8,7 @@ import './SignInForm.css';
 import CheckBox from '../checkBox/CheckBox';
 export default function SignInForm() {
     const validate = Yup.object(yupValidate);
+
     return (
         <Container fluid>
             <Row>
@@ -18,8 +19,8 @@ export default function SignInForm() {
                                 <div className="xl:w-10/12">
                                     <div className="lg:flex lg:flex-wrap g-0">
                                         <div className="block bg-white shadow-lg rounded-lg">
-                                            <div className="px-4 md:px-0">
-                                                <div className="p-12 md:mx-6">
+                                            <div className="px-4">
+                                                <div className="py-5 lg:p-12 lg:mx-6">
                                                     <Formik
                                                         initialValues={{
                                                             firstName: '',
@@ -38,7 +39,7 @@ export default function SignInForm() {
                                                         {() => (
                                                             <div>
                                                                 <div className="text-center align-middle">
-                                                                    <h1 className="font-semibold mt-1 mb-12 pb-1 capitalize text-4xl">
+                                                                    <h1 className="font-semibold mt-1 mb-12 pb-1 capitalize text-2xl  md:text-4xl">
                                                                         Login to
                                                                         your
                                                                         account
@@ -73,7 +74,10 @@ export default function SignInForm() {
                                                                                 name="rememberDevice"
                                                                                 type="checkbox"
                                                                             />
-                                                                            <a href="#">
+                                                                            <a
+                                                                                className="text-xs"
+                                                                                href="#"
+                                                                            >
                                                                                 Forgot
                                                                                 Password?
                                                                             </a>
@@ -116,10 +120,10 @@ export default function SignInForm() {
                         </div>
                     </section>
                 </Col>
-                <Col sm={12} md={7}>
+                <Col className="hidden md:block" sm={12} md={7}>
                     <div className="signIn__url h-screen fixed w-full"></div>
                 </Col>
-                <div className="bk__transition"></div>
+                <div className="bk__transition hidden md:block"></div>
             </Row>
         </Container>
     );

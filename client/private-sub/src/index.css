@@ -12,6 +12,7 @@
         @apply text-white border bg-orange-500  rounded
         hover:bg-transparent
         transition-colors border-orange-700 font-bold
+        
     }
 }
 

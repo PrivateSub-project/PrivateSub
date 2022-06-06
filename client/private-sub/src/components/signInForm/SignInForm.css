@@ -19,10 +19,10 @@ input.form-control, input.form-control:focus {
 .signIn__url{
   background-image: url(https://lh3.googleusercontent.com/g0oxer1SicpCWmQc-zbed4hArDziiV4_HcNL7o0RPZWzq-YmvFNRrP5AD6dgjwMR2pzM3EERsURND2ZQm270xIS8QR2vDJmeDLzRZtmJqQvuw7SKmUOnU5nMwPVeN8SEo1O3lgyb6w=w2400);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   backface-visibility: visible;
   background-origin: padding-box;
-  background-position: left center;
+  background-position: left 40% center;
 }
 .bk__transition{
   z-index: 1;
@@ -37,7 +37,34 @@ input.form-control, input.form-control:focus {
   pointer-events: none;
   min-height: 100vh; 
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#040C18', endColorstr='#FFFF00', GradientType=0 );
-  background: -webkit-gradient(linear,right top, left top,from(rgba(32,33,36,.2)),color-stop(65em, #202124));
-  background: -o-linear-gradient(right,rgba(32,33,36,.2) 0%,#202124 65em 0%);
-  background: linear-gradient(270deg,rgba(32,33,36,.2) 0%,#202124 68em 0%);
+ 
+}
+@media screen and (min-width: 1440px) {
+  .bk__transition{
+    background: linear-gradient(270deg,rgba(32,33,36,.25),#202124 50.899rem);
+  }
+}
+@media screen and (max-width: 1440px) {
+  .bk__transition{
+    background: linear-gradient(270deg,rgba(32,33,36,.25),#202124 35.899rem);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bk__transition{
+  background: linear-gradient(270deg,rgba(32,33,36,.25),#202124 35.001rem);
+}
+
+}
+
+@media screen and (max-width: 900px) {
+  .bk__transition{
+    background: linear-gradient(270deg,rgba(32,33,36,.25),#202124 27.2145125rem);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .bk__transition{
+    background: linear-gradient(270deg,rgba(32,33,36,.25),#202124 40.2145125rem);
+  }
 }
