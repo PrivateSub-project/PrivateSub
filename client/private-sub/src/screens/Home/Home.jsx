@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router';
 
 import './Home.css';
 import { Footer, Header, Main } from '../../container';
@@ -9,6 +10,7 @@ export default function Home() {
             <Header />
             <Main />
             <Footer />
+            <Outlet />
         </div>
     );
 }
