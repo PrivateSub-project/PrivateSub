@@ -39,7 +39,7 @@ export default function SignInForm() {
                                                         {() => (
                                                             <div>
                                                                 <div className="text-center align-middle">
-                                                                    <h1 className="font-semibold mt-1 mb-12 pb-1 capitalize text-2xl  md:text-4xl">
+                                                                    <h1 className="font-semibold mt-1 mb-12 pb-1 capitalize text-2xl  md:text-2xl lg:text-4xl">
                                                                         Login to
                                                                         your
                                                                         account
