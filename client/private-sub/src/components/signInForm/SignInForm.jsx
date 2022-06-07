@@ -23,8 +23,6 @@ export default function SignInForm() {
                                                 <div className="py-5 lg:p-12 lg:mx-6">
                                                     <Formik
                                                         initialValues={{
-                                                            firstName: '',
-                                                            lastName: '',
                                                             email: '',
                                                             password: '',
                                                             confirmPassword: '',
@@ -94,7 +92,7 @@ export default function SignInForm() {
                                                                                     'linear-gradient( to right, #ee7724, #d8363a,#dd3675,#b44593)',
                                                                             }}
                                                                         >
-                                                                            Register
+                                                                            Login
                                                                         </button>
                                                                         <button
                                                                             className="inline-block px-6 py-2.5 text-black font-medium text-md leading-tight uppercase rounded shadow-md active:ring-1 active:shadow-lg active:bg-black  transition duration-150 ease-in-out w-full mb-3"
