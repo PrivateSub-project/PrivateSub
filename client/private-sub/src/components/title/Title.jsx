@@ -28,9 +28,11 @@ export default function Title() {
                                     Sign In
                                 </button>
                             </Link>
-                            <button className="px-4 py-2 bg-orange-600">
-                                Register
-                            </button>
+                            <Link to="register">
+                                <button className="px-4 py-2 bg-orange-600">
+                                    Register
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </Col>
