@@ -1,3 +1,11 @@
+const stoppable = require('stoppable');
+const { app } = require('./controller');
+const mongoose = require('mongoose');
+const subscriptionModel = require('./models/subscription');
+const userModel = require('./models/user');
+const username = 'admin';
+const password = 'privatesub';
+
 const express = require('express');
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
@@ -37,19 +45,14 @@ passport.use(strategy);
 app.use(express.json());
 app.use(cors());
 
+
 app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.post("/register", (req, res) => { 
-    userService.registerUser(req.body)
-    .then((msg) =>{
-        res.json({ message: msg });
-    })
-    .catch((msg) => {
-        res.status(422).json({ message: msg });
-    });
-});
+const subs = subscriptionModel.findById('629fe59befec98c376f56d2a');
+console.log(subs);
+
 
 app.post("/login" , (req, res) => {
     userService.checkUser(req.body)
@@ -65,7 +68,15 @@ app.post("/login" , (req, res) => {
         res.status(422).json({ message: msg });
     })
 });
-
+app.post("/register", (req, res) => { 
+    userService.registerUser(req.body)
+    .then((msg) =>{
+        res.json({ message: msg });
+    })
+    .catch((msg) => {
+        res.status(422).json({ message: msg });
+    });
+});
 userService.connect()
 .then(() => {
     app.listen(HTTP_PORT, () => { console.log("API listening on: " + HTTP_PORT) });

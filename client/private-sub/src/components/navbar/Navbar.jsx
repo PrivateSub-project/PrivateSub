@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 import './Navbar.css';
+
 export default function Navbar() {
     const [nav, setNav] = useState(false);
     const handleClick = () => setNav(!nav);
@@ -25,9 +27,11 @@ export default function Navbar() {
                             <li>Virtual Card</li>
                             <li>Contact Us</li>
                             <li>About</li>
-                            <li className="flex border-l-2 border-zinc-500 m-auto h-5">
-                                <span className="self-center"> Sign In</span>
-                            </li>
+                            <Link to="signin" className="cursor-pointer">
+                                <li className="flex border-l-2 border-zinc-500 m-auto h-5">
+                                    <span className="self-center">Sign In</span>
+                                </li>
+                            </Link>
                         </ul>
                     </div>
                     <div
@@ -61,8 +65,11 @@ export default function Navbar() {
                         <li className="border-b-2 border-zinc-300 w-full">
                             About
                         </li>
+
                         <div className="flex flex-col my-4 signIn__shadow transition-colors">
-                            <button className="px-8 py-2">Sign In</button>
+                            <Link to="signin" className="cursor-pointer">
+                                <button className="px-8 py-2">Sign In</button>
+                            </Link>
                         </div>
                     </ul>
                 </div>
