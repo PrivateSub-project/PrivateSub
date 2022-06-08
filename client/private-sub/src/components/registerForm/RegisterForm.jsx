@@ -1,12 +1,16 @@
 import { Formik, Form } from 'formik';
 import React from 'react';
+import * as Yup from 'yup';
 
 import { Link } from 'react-router-dom';
 import CheckBoxAgree from '../checkBoxAgree/CheckBoxAgree';
 import DatePickers from '../datePicker/DatePickers';
 import { TextField } from '../textField/TextField';
+import { yupValidate } from '../../utils';
 
 export default function RegisterForm() {
+    const validate = Yup.object(yupValidate.objYupWithRegister);
+
     return (
         <section className="h-full gradient-form  md:h-screen">
             <div className="container py-12 px-6 h-full">
@@ -24,9 +28,9 @@ export default function RegisterForm() {
                                                 password: '',
                                                 confirmPassword: '',
                                                 DOB: '',
-                                                agreement: '',
+                                                agreement: false,
                                             }}
-                                            validationSchema={''}
+                                            validationSchema={validate}
                                             onSubmit={async (
                                                 values,
                                                 actions
