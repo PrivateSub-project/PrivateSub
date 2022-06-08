@@ -6,33 +6,82 @@ const userModel = require('./models/user');
 const username = 'admin';
 const password = 'privatesub';
 
-const HTTP_PORT = parseInt(process.env.PORT || 8080, 10);
-const server = stoppable(
-    app.listen(HTTP_PORT, () => {
-        console.log('Listen to ' + HTTP_PORT);
-    })
-);
+const express = require('express');
+const cors = require("cors");
+const jwt = require('jsonwebtoken');
+const passport = require("passport");
+const passportJWT = require("passport-jwt");
+const dotenv = require("dotenv");
 
-mongoose
-    .connect(
-        `mongodb+srv://${username}:${password}@cluster0.odr7ei8.mongodb.net/?retryWrites=true&w=majority`,
-        {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        }
-    )
-    .then(() => console.log('mongodb connected'))
-    .catch((err) => console.log(err));
+dotenv.config();
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function () {
-    console.log('Connected successfully');
+const userService = require("./user-service.js");
+
+const app = express();
+
+const HTTP_PORT = process.env.PORT || 8080;
+
+let ExtractJwt = passportJWT.ExtractJwt;
+let JwtStrategy = passportJWT.Strategy;
+
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
+jwtOptions.secretOrKey = `W$o47GwxOWSweMc1&Hn*pT$C8HBTmcLs`;
+
+let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
+    console.log('payload received', jwt_payload);
+
+    if (jwt_payload) {
+        next(null, { _id: jwt_payload._id, 
+            userName: jwt_payload.userName,
+        }); 
+    }   
+    else {
+        next(null, false);
+    }
+});
+
+passport.use(strategy);
+app.use(express.json());
+app.use(cors());
+
+
+app.get("/", (req, res) => {
+    res.send("Hello World!");
 });
 
 const subs = subscriptionModel.findById('629fe59befec98c376f56d2a');
 console.log(subs);
 
-module.exports = server;
 
-// Language: javascript
+app.post("/login" , (req, res) => {
+    userService.checkUser(req.body)
+    .then((user) => {
+        var payload = {
+            _id: user._id, 
+            userName: user.userName
+        };
+        const token = jwt.sign(payload, jwtOptions.secretOrKey);
+        res.json({ message: "Login successful", token: token });
+    })
+    .catch((msg) => {
+        res.status(422).json({ message: msg });
+    })
+});
+app.post("/register", (req, res) => { 
+    userService.registerUser(req.body)
+    .then((msg) =>{
+        res.json({ message: msg });
+    })
+    .catch((msg) => {
+        res.status(422).json({ message: msg });
+    });
+});
+userService.connect()
+.then(() => {
+    app.listen(HTTP_PORT, () => { console.log("API listening on: " + HTTP_PORT) });
+})
+.catch((err) => {
+    console.log("unable to start the server: " + err);
+    process.exit();
+});
