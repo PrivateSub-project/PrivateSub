@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 export default function Title() {
     return (
         <Container fluid>
@@ -22,12 +23,16 @@ export default function Title() {
                         </div>
 
                         <div className="flex justify-center md:justify-end items-center text-2xl my-6 font-bold text-white">
-                            <button className="px-4 py-2 mr-6 bg-orange-600">
-                                Sign In
-                            </button>
-                            <button className="px-4 py-2 bg-orange-600">
-                                Register
-                            </button>
+                            <Link to="signin">
+                                <button className="px-4 py-2 mr-6 bg-orange-600">
+                                    Sign In
+                                </button>
+                            </Link>
+                            <Link to="register">
+                                <button className="px-4 py-2 bg-orange-600">
+                                    Register
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </Col>
