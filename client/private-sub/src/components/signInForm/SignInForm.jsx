@@ -6,9 +6,11 @@ import { TextField } from '../textField/TextField';
 import { yupValidate } from '../../utils';
 import './SignInForm.css';
 import CheckBox from '../checkBox/CheckBox';
+import PostUserLogin from '../../API/PostUserLogin';
+import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
     const validate = Yup.object(yupValidate.objYupWithLogin);
-
+    const navigate = useNavigate();
     return (
         <Container fluid>
             <Row>
@@ -34,6 +36,30 @@ export default function SignInForm() {
                                                             actions
                                                         ) => {
                                                             console.log(values);
+                                                            const userName =
+                                                                values.email;
+                                                            const { password } =
+                                                                values;
+                                                            PostUserLogin({
+                                                                userName,
+                                                                password,
+                                                            })
+                                                                .then(
+                                                                    (value) => {
+                                                                        navigate(
+                                                                            '/'
+                                                                        );
+
+                                                                        console.log(
+                                                                            value
+                                                                        );
+                                                                    }
+                                                                )
+                                                                .catch((err) =>
+                                                                    console.log(
+                                                                        err
+                                                                    )
+                                                                );
                                                             actions.setSubmitting(
                                                                 false
                                                             );
