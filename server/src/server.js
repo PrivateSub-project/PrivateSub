@@ -1,24 +1,10 @@
 const stoppable = require('stoppable');
 const { app } = require('./controller');
 const mongoose = require('mongoose');
-
+const subscriptionModel = require('./models/subscription');
+const userModel = require('./models/user');
 const username = 'admin';
 const password = 'privatesub';
-const cluster = 'Cluster0';
-const dbname = 'test';
-
-const UserSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    age: {
-        type: Number,
-        default: 0,
-    },
-});
-
-const userModel = mongoose.model('User', UserSchema);
 
 const HTTP_PORT = parseInt(process.env.PORT || 8080, 10);
 const server = stoppable(
@@ -44,11 +30,8 @@ db.once('open', function () {
     console.log('Connected successfully');
 });
 
-userModel.find((err, docs) => {
-    if (!err) {
-        console.log(docs);
-    }
-});
+const subs = subscriptionModel.findById('629fe59befec98c376f56d2a');
+console.log(subs);
 
 module.exports = server;
 
