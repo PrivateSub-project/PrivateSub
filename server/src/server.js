@@ -1,23 +1,14 @@
-const stoppable = require('stoppable');
-const { app } = require('./controller');
-const mongoose = require('mongoose');
-const subscriptionModel = require('./models/subscription');
-const userModel = require('./models/user');
-const username = 'admin';
-const password = 'privatesub';
-
 const express = require('express');
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const dotenv = require("dotenv");
-
+const app = express();
 dotenv.config();
 
 const userService = require("./user-service.js");
 
-const app = express();
 
 const HTTP_PORT = process.env.PORT || 8080;
 
@@ -50,9 +41,8 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-const subs = subscriptionModel.findById('629fe59befec98c376f56d2a');
-console.log(subs);
-
+// const subs = subscriptionModel.findById('629fe59befec98c376f56d2a');
+// console.log(subs);
 
 app.post("/login" , (req, res) => {
     userService.checkUser(req.body)
@@ -69,6 +59,7 @@ app.post("/login" , (req, res) => {
     })
 });
 app.post("/register", (req, res) => { 
+    console.log(req.body);
     userService.registerUser(req.body)
     .then((msg) =>{
         res.json({ message: msg });
