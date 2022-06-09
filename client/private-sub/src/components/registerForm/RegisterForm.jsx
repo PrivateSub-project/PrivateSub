@@ -1,12 +1,17 @@
 import { Formik, Form } from 'formik';
 import React from 'react';
+import * as Yup from 'yup';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CheckBoxAgree from '../checkBoxAgree/CheckBoxAgree';
 import DatePickers from '../datePicker/DatePickers';
 import { TextField } from '../textField/TextField';
+import { yupValidate } from '../../utils';
+import PostUserRegister from '../../API/PostUserRegister';
 
 export default function RegisterForm() {
+    const validate = Yup.object(yupValidate.objYupWithRegister);
+    const navigate = useNavigate();
     return (
         <section className="h-full gradient-form  md:h-screen">
             <div className="container py-12 px-6 h-full">
@@ -24,14 +29,47 @@ export default function RegisterForm() {
                                                 password: '',
                                                 confirmPassword: '',
                                                 DOB: '',
-                                                agreement: '',
+                                                agreement: false,
                                             }}
-                                            validationSchema={''}
+                                            validationSchema={validate}
                                             onSubmit={async (
                                                 values,
                                                 actions
                                             ) => {
-                                                console.log(values);
+                                                if (
+                                                    values.firstName &&
+                                                    values.lastName &&
+                                                    values.email &&
+                                                    values.password
+                                                ) {
+                                                    const {
+                                                        email,
+                                                        password,
+                                                        confirmPassword,
+                                                    } = values;
+                                                    const userName = email;
+
+                                                    const password2 =
+                                                        confirmPassword;
+
+                                                    PostUserRegister({
+                                                        userName,
+                                                        password,
+                                                        password2,
+                                                    })
+                                                        .then((value) => {
+                                                            setTimeout(() => {
+                                                                navigate(
+                                                                    '/signin'
+                                                                );
+                                                            }, 1000);
+                                                            console.log(value);
+                                                        })
+                                                        .catch((err) =>
+                                                            console.log(err)
+                                                        );
+                                                }
+
                                                 actions.setSubmitting(false);
                                             }}
                                         >

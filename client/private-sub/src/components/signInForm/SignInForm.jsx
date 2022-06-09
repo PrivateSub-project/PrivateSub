@@ -6,9 +6,11 @@ import { TextField } from '../textField/TextField';
 import { yupValidate } from '../../utils';
 import './SignInForm.css';
 import CheckBox from '../checkBox/CheckBox';
+import PostUserLogin from '../../API/PostUserLogin';
+import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
-    const validate = Yup.object(yupValidate);
-
+    const validate = Yup.object(yupValidate.objYupWithLogin);
+    const navigate = useNavigate();
     return (
         <Container fluid>
             <Row>
@@ -25,16 +27,45 @@ export default function SignInForm() {
                                                         initialValues={{
                                                             email: '',
                                                             password: '',
-                                                            confirmPassword: '',
                                                         }}
                                                         validationSchema={
                                                             validate
                                                         }
-                                                        onSubmit={(values) => {
+                                                        onSubmit={async (
+                                                            values,
+                                                            actions
+                                                        ) => {
                                                             console.log(values);
+                                                            const userName =
+                                                                values.email;
+                                                            const { password } =
+                                                                values;
+                                                            PostUserLogin({
+                                                                userName,
+                                                                password,
+                                                            })
+                                                                .then(
+                                                                    (value) => {
+                                                                        navigate(
+                                                                            '/'
+                                                                        );
+
+                                                                        console.log(
+                                                                            value
+                                                                        );
+                                                                    }
+                                                                )
+                                                                .catch((err) =>
+                                                                    console.log(
+                                                                        err
+                                                                    )
+                                                                );
+                                                            actions.setSubmitting(
+                                                                false
+                                                            );
                                                         }}
                                                     >
-                                                        {() => (
+                                                        {({ isSubmitting }) => (
                                                             <div>
                                                                 <div className="text-center align-middle">
                                                                     <h1 className="font-semibold mt-1 mb-12 pb-1 capitalize text-2xl  md:text-2xl lg:text-4xl">
@@ -58,13 +89,7 @@ export default function SignInForm() {
                                                                             type="password"
                                                                         />
                                                                     </div>
-                                                                    <div className="mb-4">
-                                                                        <TextField
-                                                                            placeholder="Confirm Password"
-                                                                            name="confirmPassword"
-                                                                            type="password"
-                                                                        />
-                                                                    </div>
+
                                                                     <div className="mb-4">
                                                                         <div className="flex justify-between items-center">
                                                                             <CheckBox
@@ -91,6 +116,9 @@ export default function SignInForm() {
                                                                                 background:
                                                                                     'linear-gradient( to right, #ee7724, #d8363a,#dd3675,#b44593)',
                                                                             }}
+                                                                            disabled={
+                                                                                isSubmitting
+                                                                            }
                                                                         >
                                                                             Login
                                                                         </button>
