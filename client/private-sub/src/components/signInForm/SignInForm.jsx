@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -8,16 +8,20 @@ import './SignInForm.css';
 import CheckBox from '../checkBox/CheckBox';
 import PostUserLogin from '../../API/PostUserLogin';
 import { useNavigate } from 'react-router-dom';
+import { contextCommon } from '../../utils';
 export default function SignInForm() {
     const validate = Yup.object(yupValidate.objYupWithLogin);
     const navigate = useNavigate();
     const [data, setData] = useState(null);
+
+    const setUser = useContext(contextCommon);
     useEffect(() => {
         if (data)
             PostUserLogin(data)
                 .then((value) => {
                     navigate('/');
-
+                    setUser(data);
+                    console.log(data);
                     console.log(value);
                 })
                 .catch((err) => console.log(err));
