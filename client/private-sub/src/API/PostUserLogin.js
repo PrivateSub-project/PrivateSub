@@ -5,7 +5,7 @@ export default async function PostUserLogin(userData) {
         .post(`${Endpoint.API_STRING}/login`, userData)
         .catch((err) => console.log(err));
     if (!user) {
-        if (user.status === 401) logout();
+        if (user.status === 401 || user.status === 200) logout();
         const error = user && user.statusText;
         return Promise.reject(error);
     }
