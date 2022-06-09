@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -11,6 +11,17 @@ import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
     const validate = Yup.object(yupValidate.objYupWithLogin);
     const navigate = useNavigate();
+    const [data, setData] = useState(null);
+    useEffect(() => {
+        if (data)
+            PostUserLogin(data)
+                .then((value) => {
+                    navigate('/');
+
+                    console.log(value);
+                })
+                .catch((err) => console.log(err));
+    }, [data]);
     return (
         <Container fluid>
             <Row>
@@ -40,26 +51,10 @@ export default function SignInForm() {
                                                                 values.email;
                                                             const { password } =
                                                                 values;
-                                                            PostUserLogin({
+                                                            setData({
                                                                 userName,
                                                                 password,
-                                                            })
-                                                                .then(
-                                                                    (value) => {
-                                                                        navigate(
-                                                                            '/'
-                                                                        );
-
-                                                                        console.log(
-                                                                            value
-                                                                        );
-                                                                    }
-                                                                )
-                                                                .catch((err) =>
-                                                                    console.log(
-                                                                        err
-                                                                    )
-                                                                );
+                                                            });
                                                             actions.setSubmitting(
                                                                 false
                                                             );
