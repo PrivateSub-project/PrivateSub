@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import './Navbar.css';
 import { decodeJWT } from '../../utils';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 export default function Navbar() {
     const [nav, setNav] = useState(false);
@@ -19,8 +21,11 @@ export default function Navbar() {
     console.log(user);
     const handleLogout = () => {
         if (user) {
-            setUser(localStorage.clear());
-            window.location.reload(false);
+            signOut(auth).then(() => {
+                console.log('You are unauthorized');
+                setUser(localStorage.clear());
+                window.location.reload(false);
+            });
         }
     };
     return (

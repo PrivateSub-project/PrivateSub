@@ -95,7 +95,7 @@ export default function SignInForm() {
                                                     credential.params
                                                         ?.verificationId
                                                 );
-                                                navigate('/dashboard');
+                                                navigate('/');
                                                 setError('');
                                             } catch (err) {
                                                 console.error(err);
