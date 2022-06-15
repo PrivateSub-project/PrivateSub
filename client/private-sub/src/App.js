@@ -7,7 +7,7 @@ import Home from './screens/Home/Home';
 import NoPage from './screens/NoPage/NoPage';
 import Register from './screens/Register/Register';
 import SignIn from './screens/SignIn/SignIn';
-import { Context } from './utils';
+import { Context, ProtectedRoute } from './utils';
 
 export default function App() {
     return (
@@ -15,9 +15,22 @@ export default function App() {
             <Context>
                 <Routes>
                     <Route index element={<Home />} />
+
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route
+                        path="/auth"
+                        element={
+                            <Route
+                                path="/dashboard"
+                                element={
+                                    <ProtectedRoute>
+                                        <Dashboard />
+                                    </ProtectedRoute>
+                                }
+                            />
+                        }
+                    />
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Context>

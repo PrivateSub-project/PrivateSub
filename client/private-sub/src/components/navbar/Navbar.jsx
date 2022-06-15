@@ -43,7 +43,9 @@ export default function Navbar() {
                     </div>
                     <div className="hidden md:flex pr-4 mr-6">
                         <ul className="hidden md:flex items-center">
-                            <li>Dashboard</li>
+                            <Link to="/auth/dashboard">
+                                <li>Dashboard</li>
+                            </Link>
                             <li>Virtual Card</li>
                             <li>Contact Us</li>
                             <li>About</li>
