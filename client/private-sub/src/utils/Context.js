@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import CreateContext from './contextCommon';
-import setUpRecaptcha, { stateAuthChanged } from './code.auth';
+import setUpRecaptcha from './code.auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
 export default function Context({ children }) {
     const [user, setUser] = useState(null);
-    const [userPhone, setUserPhone] = useState(null);
+    const [userPhone, setUserPhone] = useState();
     useEffect(() => {
-        const { onAuthStateChange, currentUserData } = stateAuthChanged();
-        setUserPhone(currentUserData);
+        const onAuthStateChange = onAuthStateChanged(auth, (currentUser) => {
+            console.log('Auth', currentUser?.accessToken);
+            setUserPhone(currentUser?.accessToken);
+        });
         return () => {
             onAuthStateChange();
         };
@@ -14,7 +18,7 @@ export default function Context({ children }) {
 
     return (
         <CreateContext.Provider
-            value={{ user, setUser, setUpRecaptcha, userPhone }}
+            value={{ user, setUser, setUpRecaptcha, userPhone, setUserPhone }}
         >
             {children}
         </CreateContext.Provider>

@@ -19,18 +19,14 @@ export default function App() {
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/register" element={<Register />} />
                     <Route
-                        path="/auth"
+                        path="/auth/dashboard"
                         element={
-                            <Route
-                                path="/dashboard"
-                                element={
-                                    <ProtectedRoute>
-                                        <Dashboard />
-                                    </ProtectedRoute>
-                                }
-                            />
+                            <ProtectedRoute>
+                                <Dashboard />
+                            </ProtectedRoute>
                         }
                     />
+
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Context>
