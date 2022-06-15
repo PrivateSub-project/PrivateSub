@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import Dashboard from './screens/Dashboard/Dashboard';
 import Home from './screens/Home/Home';
 import NoPage from './screens/NoPage/NoPage';
 import Register from './screens/Register/Register';
@@ -16,6 +17,7 @@ export default function App() {
                     <Route index element={<Home />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Context>
