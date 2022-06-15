@@ -1,4 +1,8 @@
-import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import {
+    onAuthStateChanged,
+    RecaptchaVerifier,
+    signInWithPhoneNumber,
+} from 'firebase/auth';
 import { auth } from './firebase';
 
 export default function setUpRecaptcha(number) {
@@ -10,4 +14,13 @@ export default function setUpRecaptcha(number) {
     );
     recaptchaVerifier.render();
     return signInWithPhoneNumber(auth, number, recaptchaVerifier);
+}
+
+export function stateAuthChanged() {
+    let currentUserData = null;
+    const onAuthStateChange = onAuthStateChanged(auth, (currentUser) => {
+        console.log('Auth', currentUser);
+        currentUserData = currentUser;
+    });
+    return { currentUserData, onAuthStateChange };
 }

@@ -12,8 +12,8 @@ const firebaseConfig = {
     projectId: 'privatesub-project',
     storageBucket: 'privatesub-project.appspot.com',
     messagingSenderId: '16776767755',
-    appId: '1:16776767755:web:4aa1355dec673b1d24da0e',
-    measurementId: 'G-6XHXJ1XYLJ',
+    appId: '1:16776767755:web:820bad398447cba824da0e',
+    measurementId: 'G-BYY4NNB1BD',
 };
 
 // Initialize Firebase
