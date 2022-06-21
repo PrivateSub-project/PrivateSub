@@ -51,7 +51,9 @@ export default function Navbar() {
                             <Link to="/auth/dashboard">
                                 <li>Dashboard</li>
                             </Link>
-                            <li>Virtual Card</li>
+                            <Link to="/auth/virtualcard">
+                                <li>Virtual Card</li>
+                            </Link>
                             <li>Contact Us</li>
                             <li>About</li>
                             <Link

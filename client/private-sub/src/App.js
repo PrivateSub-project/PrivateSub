@@ -7,6 +7,7 @@ import Home from './screens/Home/Home';
 import NoPage from './screens/NoPage/NoPage';
 import Register from './screens/Register/Register';
 import SignIn from './screens/SignIn/SignIn';
+import VirtualCard from './screens/VirtualCard/VirtualCard';
 import { Context, ProtectedRoute } from './utils';
 
 export default function App() {
@@ -26,7 +27,14 @@ export default function App() {
                             </ProtectedRoute>
                         }
                     />
-
+                    <Route
+                        path="/auth/virtualcard"
+                        element={
+                            <ProtectedRoute>
+                                <VirtualCard />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Context>
