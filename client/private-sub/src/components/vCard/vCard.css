@@ -1,0 +1,7 @@
+.vCardNav.active {
+    background: linear-gradient(245.39deg, #FC65ED, #0500FF);
+    color: white !important;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    border:  12px solid;
+}
