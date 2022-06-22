@@ -25,7 +25,6 @@ export default function VCardForm() {
             }}
             validationSchema={''}
             onSubmit={(values) => {
-                console.log(values);
                 setDataSteps({ ...values });
             }}
         >
