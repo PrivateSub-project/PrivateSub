@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Slider from './SliderCard';
 import Step from './Step';
 import FormSlider from './FormSlider';
 import './SliderCard.css';
+import { contextCommon2 } from '../../utils';
+
 export default function index() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { dataSteps } = useContext(contextCommon2);
 
     const handleIndexChange = (index) => {
         setCurrentIndex(index);
@@ -17,7 +20,9 @@ export default function index() {
         setCurrentIndex(currentIndex - 1);
     };
 
-    const handleComplete = () => {};
+    const handleComplete = () => {
+        console.log(dataSteps);
+    };
 
     return (
         <div className="flex font-serif p-1 h-100">

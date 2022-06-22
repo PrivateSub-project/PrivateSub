@@ -6,7 +6,7 @@ const Step = ({ currentIndex }) => {
             {steps.map((step, index) => {
                 let color = currentIndex === index ? '#00d4ff' : 'black';
                 return (
-                    <div className="steps-item">
+                    <div key={index} className="steps-item">
                         <h3
                             className="text-2xl"
                             style={{
