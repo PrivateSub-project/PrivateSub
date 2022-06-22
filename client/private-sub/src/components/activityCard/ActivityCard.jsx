@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
+import { ContextSteps } from '../../utils';
 import Index from '../sliderCard/Index';
 export default function ActivityCard() {
     return (
@@ -65,7 +66,9 @@ export default function ActivityCard() {
             <br />
             <Card className="h-96 block">
                 <Card.Body className="h-100">
-                    <Index />
+                    <ContextSteps>
+                        <Index />
+                    </ContextSteps>
                 </Card.Body>
             </Card>
         </>
