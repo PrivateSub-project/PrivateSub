@@ -10,7 +10,7 @@ export default function VCardForm() {
     const handleCvcFocus = (e) => {
         e.target.name === 'cvc' ? setCvc('cvc') : setCvc('');
     };
-    const handlechange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
         setDataSteps((values) => ({ ...values, [name]: value }));
     };
@@ -18,7 +18,7 @@ export default function VCardForm() {
         <Formik
             initialValues={{
                 cvc: dataSteps?.cvc,
-                number: dataSteps?.number,
+                number: dataSteps?.number || '',
                 expiry: dataSteps?.expiry,
                 name: dataSteps?.name,
                 typeOfCard: dataSteps?.typeOfCard,
@@ -41,7 +41,7 @@ export default function VCardForm() {
                         acceptedCards={['visa', 'mastercard']}
                     />
 
-                    <Form onChange={handlechange}>
+                    <Form onChange={handleChange}>
                         <TextField
                             name="typeOfCard"
                             onFocus={handleCvcFocus}
@@ -59,7 +59,6 @@ export default function VCardForm() {
                             name="number"
                             onFocus={handleCvcFocus}
                         />
-                        {/* {setDataSteps(values.name)} */}
                         <TextField
                             placeholder="expiry"
                             name="expiry"
@@ -75,7 +74,6 @@ export default function VCardForm() {
                             name="cvc"
                             onFocus={handleCvcFocus}
                         />
-                        <button type="submit">ok</button>
                     </Form>
                 </div>
             )}
