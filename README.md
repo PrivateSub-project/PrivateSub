@@ -1,6 +1,6 @@
 # PrivateSub
 
-ACCESS LINK : [!DEMO](https://privatesub-project.web.app/)
+ACCESS LINK : [DEMO](https://privatesub-project.web.app/)
 
 ## Members
 
