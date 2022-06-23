@@ -74,3 +74,27 @@
   left: 23px;
   width: 2px;
 }
+
+.bg__money::after {
+  background: url('https://freepngimg.com/download/money/70896-icons-money-bill-dollar-computer-bank-stock.png');
+  -moz-transform: rotate(330deg);
+  -webkit-transform: rotate(330deg);
+  -o-transform: rotate(330deg);
+  -ms-transform: rotate(330deg);
+  transform: rotate(330deg);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-position: right center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  filter: opacity(0.5);
+  content: '';
+
+}
+@media screen and (max-width: 700px) {
+  .bg__money::after {
+    display: none;
+  }
+}
