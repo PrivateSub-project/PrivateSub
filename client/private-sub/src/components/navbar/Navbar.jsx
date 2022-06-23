@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
+import { decodeJWT } from '../../utils';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 export default function Navbar() {
     const [nav, setNav] = useState(false);
+    const [user, setUser] = useState(localStorage.getItem('token'));
     const handleClick = () => setNav(!nav);
+    let decodeUser = null;
+    let arrayString = [];
+
+    if (user) {
+        decodeUser = useMemo(() => decodeJWT(user), [user]);
+        arrayString = decodeUser.userName.split('@')[0];
+    }
+    console.log(user);
+    const handleLogout = () => {
+        if (user) {
+            signOut(auth).then(() => {
+                console.log('You are unauthorized');
+                setUser(localStorage.clear());
+                window.location.reload(false);
+            });
+        }
+    };
     return (
         <React.Fragment>
             <div className="w-screen h-[80px] z-10 bg-transparent text-white drop-shadow-lg">
@@ -18,18 +39,32 @@ export default function Navbar() {
                             alt="logo"
                         />
                         <h1 className="text-3xl font-bold mx-5 sm:text-4xl">
-                            PrivateSub
+                            {decodeUser?.userName ? (
+                                <>Hello {arrayString}</>
+                            ) : (
+                                <>PrivateSub</>
+                            )}
                         </h1>
                     </div>
                     <div className="hidden md:flex pr-4 mr-6">
                         <ul className="hidden md:flex items-center">
-                            <li>Dashboard</li>
-                            <li>Virtual Card</li>
+                            <Link to="/auth/dashboard">
+                                <li>Dashboard</li>
+                            </Link>
+                            <Link to="/auth/virtualcard">
+                                <li>Virtual Card</li>
+                            </Link>
                             <li>Contact Us</li>
                             <li>About</li>
-                            <Link to="signin" className="cursor-pointer">
+                            <Link
+                                to={user ? '/' : 'signin'}
+                                className="cursor-pointer"
+                                onClick={handleLogout}
+                            >
                                 <li className="flex border-l-2 border-zinc-500 m-auto h-5">
-                                    <span className="self-center">Sign In</span>
+                                    <span className="self-center">
+                                        {user ? 'logout' : 'Sign In'}
+                                    </span>
                                 </li>
                             </Link>
                         </ul>
@@ -67,8 +102,13 @@ export default function Navbar() {
                         </li>
 
                         <div className="flex flex-col my-4 signIn__shadow transition-colors">
-                            <Link to="signin" className="cursor-pointer">
-                                <button className="px-8 py-2">Sign In</button>
+                            <Link
+                                to={user ? '/' : 'signin'}
+                                className="cursor-pointer"
+                            >
+                                <button className="px-8 py-2">
+                                    {user ? 'logout' : 'Sign In'}
+                                </button>
                             </Link>
                         </div>
                     </ul>
