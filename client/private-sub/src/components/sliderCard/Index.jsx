@@ -4,6 +4,7 @@ import Step from './Step';
 import FormSlider from './FormSlider';
 import './SliderCard.css';
 import { contextCommon2 } from '../../utils';
+import PostCreditCard from '../../API/PostCreditCard';
 
 export default function index() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,7 +22,15 @@ export default function index() {
     };
 
     const handleComplete = () => {
-        console.log(dataSteps);
+        const amount = parseInt(dataSteps.amount);
+        console.log({ ...dataSteps, amount });
+        if (dataSteps)
+            PostCreditCard(dataSteps)
+                .then((value) => {
+                    // navigate('/');
+                    console.log(value);
+                })
+                .catch((err) => console.log(err));
     };
 
     return (
