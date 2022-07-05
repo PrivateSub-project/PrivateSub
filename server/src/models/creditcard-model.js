@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const creditCardSchema = new Schema({
   number: {
-    type: Number,
+    type: String,
     unique: true,
     required: [true, 'Must provide credit card number'],
   },
@@ -11,9 +11,17 @@ const creditCardSchema = new Schema({
     type: String,
     required: [true, 'Must provide user'],
   },
-  expiry: {
+  name: {
     type: String,
+    required: [true, 'Must provide name'],
+  },
+  expiry: {
+    type: Number,
     required: [true, 'Must provide expiry date'],
+  },
+  cvc: {
+    type: Number,
+    required: [true, 'Must provide cvc'],
   },
   amount: {
     type: Number,
@@ -22,6 +30,14 @@ const creditCardSchema = new Schema({
   active: {
     type: Boolean,
     default: true,
+  },
+  title: {
+    type: String,
+    required: [true, 'Must provide title'],
+  },
+  typeOfCard: {
+    type: String,
+    required: [true, 'Must provide type of'],
   },
 });
 
