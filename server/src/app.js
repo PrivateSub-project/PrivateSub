@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const auth = require('./jwt');
+const cors = require('cors');
 
 const logger = require('./logger');
 const pino = require('pino-http')({
@@ -12,6 +13,7 @@ const pino = require('pino-http')({
 passport.use(auth.strategy);
 app.use(pino);
 app.use(express.json());
+app.use(cors());
 
 // Controllers
 const userController = require('./controllers/user-controller');
