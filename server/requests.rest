@@ -1,0 +1,75 @@
+### Login user
+
+POST http://localhost:8000/user/login
+Content-Type: application/json
+
+{
+  "username": "Nenad",
+  "password": "test"
+}
+
+### Register user
+
+POST http://localhost:8000/user/register
+Content-Type: application/json
+
+{
+  "username": "Nenad",
+  "password": "test",
+  "password2": "test"
+}
+
+### Toggle credit card status
+
+POST http://localhost:8000/cc/toggleActive
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
+
+{
+  "number": "1234567890123456"
+}
+
+
+### Post new CC
+
+POST http://localhost:8000/cc/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
+
+{
+    "user": "Nenad",
+    "number": 1234567890123456,
+    "expiry": "12/24",
+    "active": true
+}
+
+### Get all CCs for user
+
+GET http://localhost:8000/cc/Nenad
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
+
+{
+    "user": "Nenad"
+}
+
+### Get CC number
+
+GET http://localhost:8000/cc/number
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
+
+{
+  "type": "MasterCard"
+}
+
+### Fund CC
+
+POST http://localhost:8000/cc/addFunds
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
+
+{
+  "number": "1234567890123456",
+  "amount": 50
+}
