@@ -6,3 +6,4 @@ export { default as SignInForm } from './signInForm/SignInForm';
 export { default as RegisterForm } from './registerForm/RegisterForm.jsx';
 export { default as CheckBoxAgree } from './checkBoxAgree/CheckBoxAgree.jsx';
 export { default as VCard } from './vCard/vCard.jsx';
+export { default as SubscriptionList } from './subscriptionList/SubscriptionList.jsx';

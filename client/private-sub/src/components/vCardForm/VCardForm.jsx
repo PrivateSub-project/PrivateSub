@@ -1,14 +1,17 @@
 import { Form, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
+import getCardNumAPI from '../../API/getCardNumAPI';
 import { contextCommon2 } from '../../utils';
 import { TextField } from '../textField/TextField';
 export default function VCardForm() {
     const [cvc, setCvc] = useState('');
     const [cvcNum, setCvcNum] = useState('');
     const [expiryNum, setExpiryNum] = useState('');
-    const { setDataSteps, dataSteps } = useContext(contextCommon2);
+    const [card, setCard] = useState(null);
+    const { setDataSteps, dataSteps, dataCardNum, setDataCardNum } =
+        useContext(contextCommon2);
 
     const handleCvcFocus = () => {
         setCvc('cvc');
@@ -19,9 +22,7 @@ export default function VCardForm() {
     };
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setCvcNum(986);
-        setExpiryNum(2304);
-        console.log([name]);
+
         setDataSteps((values) => ({
             ...values,
             [name]: value,
@@ -29,9 +30,29 @@ export default function VCardForm() {
             expiry: expiryNum,
         }));
         if (name == 'number') {
+            const [dataValue] = card.filter(
+                (cardNum) => cardNum.number == value
+            );
+            if (dataValue) {
+                setCvcNum(dataValue.cvc);
+                setExpiryNum(dataValue.expiry);
+            }
             handleCvcFocus();
         }
+        if (name == 'typeOfCard') {
+            setDataCardNum({ [name]: value });
+        }
     };
+
+    useEffect(() => {
+        if (dataCardNum)
+            getCardNumAPI(dataCardNum)
+                .then((value) => {
+                    setCard(value);
+                })
+                .catch((err) => console.log(err));
+    }, [dataCardNum]);
+
     return (
         <Formik
             initialValues={{
@@ -67,15 +88,26 @@ export default function VCardForm() {
                         </TextField>
 
                         <TextField isSelection={true} name="number">
-                            <option value="" aria-disabled disabled>
-                                Select a number
-                            </option>
-                            <option value="4363653674634645">
-                                4363-6536-7463-4645
-                            </option>
-                            <option value="4374745334547645">
-                                4374-7453-3454-7645
-                            </option>
+                            {card ? (
+                                <>
+                                    <option value="" aria-disabled disabled>
+                                        Select a number
+                                    </option>
+
+                                    {card?.map((cardNum, index) => (
+                                        <option
+                                            key={index}
+                                            value={`${cardNum?.number}`}
+                                        >
+                                            {cardNum?.number}
+                                        </option>
+                                    ))}
+                                </>
+                            ) : (
+                                <option selected aria-disabled disabled>
+                                    No Data
+                                </option>
+                            )}
                         </TextField>
                         <TextField placeholder="name" name="name" />
                     </Form>
