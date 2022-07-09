@@ -1,38 +1,35 @@
 {
-  "name": "private-sub",
-  "private": "true",
-  "version": "0.0.1",
-  "description": "BackendSide of Application",
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon ./src/server.js --watch src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --config .eslintrc.js src/**"
+    "lint": "eslint --config .eslintrc.js src/**",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PrivateSub-project/PrivateSub.git"
-  },
-  "author": "Private Sub Server",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "eslint": "^8.15.0",
-    "nodemon": "^2.0.16",
-    "prettier": "2.6.2"
+    "eslint": "^8.18.0",
+    "nodemon": "^2.0.18",
+    "prettier": "2.7.1"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "compression": "^1.7.4",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "creditcard-generator": "^0.0.7",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.6",
-    "node": "^17.7.2",
+    "mongoose": "^6.4.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
+    "pino": "^8.0.0",
+    "pino-http": "^8.0.1",
+    "pino-pretty": "^8.0.0",
     "stoppable": "^1.1.0"
   }
 }

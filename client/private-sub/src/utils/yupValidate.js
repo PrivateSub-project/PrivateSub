@@ -24,4 +24,12 @@ const objYupWithLogin = {
         .required('Password is required'),
 };
 
-export default { objYupWithRegister, objYupWithLogin };
+const objYupWithCodeNum = {
+    code: Yup.string()
+        .matches(/^[0-9]+$/, 'Must be only digits')
+        .required('Please enter code')
+        .min(6, 'Must be exactly 6 digits')
+        .max(6, 'Must be exactly 6 digits'),
+};
+
+export default { objYupWithRegister, objYupWithLogin, objYupWithCodeNum };
