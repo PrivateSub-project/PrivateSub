@@ -5,7 +5,7 @@ import './VirtualCard.css';
 export default function VirtualCard() {
     return (
         <div className="bg__vCard">
-            <Header VCard={true} />
+            <Header DashboardVCard={true} />
             <Main VCards={true} />
             <Footer />
         </div>

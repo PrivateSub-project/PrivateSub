@@ -9,3 +9,4 @@ export { default as getCredentialAuth } from './getCredential.auth';
 export { default as ProtectedRoute } from './ProtectedRoute';
 export { default as CardArrays } from './CardArrays';
 export { default as ContextSteps } from './ContextSteps';
+export { default as GetData } from './data/getData';

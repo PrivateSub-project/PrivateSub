@@ -1,9 +1,12 @@
 import React from 'react';
-
+import './Dashboard.css';
+import { Footer, Header, Main } from '../../container';
 export default function Dashboard() {
     return (
-        <div>
-            2- Factor Auth Dashboard <code>HTTP 200</code>
+        <div className="bg__vCard">
+            <Header DashboardVCard={true} />
+            <Main Dashboard={true} />
+            <Footer />
         </div>
     );
 }
