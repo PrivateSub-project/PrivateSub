@@ -69,6 +69,7 @@ POST http://localhost:8000/cc/addFunds
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
 
+
 {
   "number": "1234567890123456",
   "amount": 50

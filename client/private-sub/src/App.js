@@ -8,7 +8,7 @@ import NoPage from './screens/NoPage/NoPage';
 import Register from './screens/Register/Register';
 import SignIn from './screens/SignIn/SignIn';
 import VirtualCard from './screens/VirtualCard/VirtualCard';
-import { Context, ProtectedRoute } from './utils';
+import { Context } from './utils';
 
 export default function App() {
     return (
@@ -22,17 +22,17 @@ export default function App() {
                     <Route
                         path="/auth/dashboard"
                         element={
-                            <ProtectedRoute>
-                                <Dashboard />
-                            </ProtectedRoute>
+                            // <ProtectedRoute>
+                            <Dashboard />
+                            // </ProtectedRoute>
                         }
                     />
                     <Route
                         path="/auth/virtualcard"
                         element={
-                            <ProtectedRoute>
-                                <VirtualCard />
-                            </ProtectedRoute>
+                            // <ProtectedRoute>
+                            <VirtualCard />
+                            // </ProtectedRoute>
                         }
                     />
                     <Route path="*" element={<NoPage />} />

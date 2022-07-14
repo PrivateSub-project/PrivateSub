@@ -1,20 +1,23 @@
 import axios from 'axios';
 import Endpoint from './Endpoint';
 export default async function PostCreditCard(cardData) {
-    const user = await axios
-        .post(`${Endpoint.API_STRING_localhost}/cc`, cardData, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-        })
+    console.log(cardData);
+    const { number, expiry, name } = cardData;
+    const userCard = await axios
+        .post(
+            `${Endpoint.API_STRING_localhost}/cc`,
+            { user: name, number, expiry, active: true },
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            }
+        )
         .catch((err) => console.log(err));
-    if (!user) {
-        if (user.status === 401 || user.status === 200);
-        const error = user && user.statusText;
+    if (!userCard) {
+        if (userCard.status === 401 || userCard.status === 200);
+        const error = userCard && userCard.statusText;
         return Promise.reject(error);
     }
-    console.log(user);
-    // user && localStorage.setItem('token', user.data?.token);
-
-    // return user.data;
+    return userCard.data;
 }

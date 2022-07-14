@@ -24,8 +24,8 @@ exports.saveCreditCard = async (req, res) => {
 
 exports.returnCreditCardNumber = (req, res) => {
   try {
-    if (req.body.type === 'VISA' || req.body.type === 'MasterCard') {
-      var number = generator.GenCC(req.body.type);
+    if (req.query.type === 'VISA' || req.query.type === 'MasterCard') {
+      var number = generator.GenCC(req.query.type);
       res.json({
         message: `Credit card number generated successfully`,
         number: number[0],
