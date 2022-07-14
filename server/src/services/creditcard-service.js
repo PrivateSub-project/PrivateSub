@@ -1,26 +1,20 @@
 const generator = require('creditcard-generator');
 const CreditCardModel = require('../models/creditcard-model');
 const logger = require('../logger');
+//const auth = require('../jwt');
 
 exports.saveCreditCard = async (req, res) => {
   try {
-    if (CreditCardModel.findOne({ number: req.body.number })) {
-      res.status(400).json({
-        message: `Credit card already exists`,
-      });
-    } else {
-      var newCreditCard = new CreditCardModel(req.body);
-      await newCreditCard.save();
-      res.status(200).json({
-        message: `Credit card created successfully`,
-        data: newCreditCard,
-      });
-    }
+    const newCreditCard = await CreditCardModel.create(req.body);
+    res.status(200).json({
+      message: `Credit card created successfully`,
+      data: newCreditCard,
+    });    
   } catch (error) {
     logger.error(error);
-    res.status(500).json(error);
+    res.status(500).json({ message: `Error creating credit card` });
   }
-};
+}
 
 exports.returnCreditCardNumber = (req, res) => {
   try {
