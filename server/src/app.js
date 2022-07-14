@@ -18,10 +18,12 @@ app.use(cors());
 // Controllers
 const userController = require('./controllers/user-controller');
 const creditCardController = require('./controllers/creditcard-controller');
+const subscriptionController = require('./controllers/subscription-controller');
 
 // Routes
 app.use('/cc', creditCardController);
 app.use('/user', userController);
+app.use('/subscription', subscriptionController);
 
 app.get('/', (req, res) => {
   res.setHeader('Cache-Control', 'no-cache');
