@@ -10,3 +10,4 @@ if (options.level === 'debug') {
 }
 
 module.exports = require('pino')(options);
+//pino
