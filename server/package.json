@@ -18,7 +18,7 @@
     "prettier": "2.7.1"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "creditcard-generator": "^0.0.7",
     "dotenv": "^16.0.1",
@@ -27,7 +27,7 @@
     "mongoose": "^6.4.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
-    "pino": "^8.0.0",
+    "pino": "^8.1.0",
     "pino-http": "^8.0.1",
     "pino-pretty": "^8.0.0",
     "stoppable": "^1.1.0"
