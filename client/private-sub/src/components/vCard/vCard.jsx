@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, FormCheck, Nav } from 'react-bootstrap';
-import { GenCC, Schemes } from 'creditcard-generator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBank } from '@fortawesome/free-solid-svg-icons';
 
-import { CardArrays } from '../../utils';
+// import { CardArrays } from '../../utils';
 import './vCard.css';
 import ActivityCard from '../activityCard/ActivityCard';
+import getCardNumAPI from '../../API/GetAllCCUser';
+import jwtDecode from 'jwt-decode';
+import { contextCommon2 } from '../../utils';
 
 export default function vCard() {
-    const vCardNum = GenCC(Schemes['VISA'], 1);
+    const { dataSteps, Final } = useContext(contextCommon2);
     const [navCard, setNavCard] = useState(1);
+    const [dataAPI, setDataAPI] = useState([]);
     const [isActive, setIsActive] = useState(false);
     const handleTabNav = (e) => {
         try {
@@ -23,9 +26,21 @@ export default function vCard() {
     const handleChangeActive = (e) => {
         setIsActive(e.target.checked);
     };
-    console.log(vCardNum);
-    console.log(isActive);
 
+    useEffect(() => {
+        console.log(Final);
+        console.log(dataSteps);
+        const nameData = jwtDecode(localStorage.getItem('token'));
+        console.log(nameData);
+        if (nameData)
+            getCardNumAPI(nameData.username)
+                .then((value) => {
+                    // navigate('/');
+                    console.log(value);
+                    setDataAPI(value);
+                })
+                .catch((err) => console.log(err));
+    }, [Final]);
     return (
         <section className="h-full gradient-form  md:h-screen">
             <div className="container py-12 px-1 h-full">
@@ -43,89 +58,106 @@ export default function vCard() {
                                                             variant="tabs"
                                                             defaultActiveKey="#card one"
                                                         >
-                                                            {CardArrays.map(
-                                                                (item) => (
-                                                                    <Nav.Item
-                                                                        key={
-                                                                            item.id
-                                                                        }
-                                                                    >
-                                                                        <Nav.Link
-                                                                            className="vCardNav"
-                                                                            id={
-                                                                                item.id
+                                                            {dataAPI?.data &&
+                                                                dataAPI.data.map(
+                                                                    (
+                                                                        item,
+                                                                        index
+                                                                    ) => (
+                                                                        <Nav.Item
+                                                                            key={
+                                                                                item._id
                                                                             }
-                                                                            onClick={
-                                                                                handleTabNav
-                                                                            }
-                                                                            href={`#${item.selection}`}
                                                                         >
-                                                                            {
-                                                                                item.selection
-                                                                            }
-                                                                        </Nav.Link>
-                                                                    </Nav.Item>
-                                                                )
-                                                            )}
+                                                                            <Nav.Link
+                                                                                className="vCardNav"
+                                                                                id={
+                                                                                    index
+                                                                                }
+                                                                                onClick={
+                                                                                    handleTabNav
+                                                                                }
+                                                                                href={`#card${
+                                                                                    index +
+                                                                                    1
+                                                                                }`}
+                                                                            >
+                                                                                card{' '}
+                                                                                {index +
+                                                                                    1}
+                                                                            </Nav.Link>
+                                                                        </Nav.Item>
+                                                                    )
+                                                                )}
                                                         </Nav>
                                                     </Card.Header>
 
-                                                    {CardArrays.map((item) => {
-                                                        if (item.id === navCard)
-                                                            return (
-                                                                <Card.Body
-                                                                    key={
-                                                                        item.id
-                                                                    }
-                                                                    style={{
-                                                                        backgroundColor:
-                                                                            item.color,
-                                                                        color: 'white',
-                                                                    }}
-                                                                    className="w-3/5 m-auto my-4 border-separate border-1 border-black rounded-xl"
-                                                                >
-                                                                    <Card.Title className="mb-4">
-                                                                        {
-                                                                            item.name
-                                                                        }
-                                                                    </Card.Title>
-                                                                    <Card.Subtitle className="mb-2">
-                                                                        {
-                                                                            item.issue
-                                                                        }
-                                                                    </Card.Subtitle>
-                                                                    <Card.Text className="mb-2">
-                                                                        <FontAwesomeIcon
-                                                                            className="mr-2"
-                                                                            icon={
-                                                                                faBank
+                                                    {dataAPI?.data &&
+                                                        dataAPI.data.map(
+                                                            (item, index) => {
+                                                                if (
+                                                                    index ===
+                                                                    navCard
+                                                                )
+                                                                    return (
+                                                                        <Card.Body
+                                                                            key={
+                                                                                item._id
                                                                             }
-                                                                            size="1x"
-                                                                        />
-                                                                        {
-                                                                            item.number
-                                                                        }
-                                                                    </Card.Text>
-                                                                    <Card.Footer>
-                                                                        <div className="float-right clear-left text-2xl">
-                                                                            <FormCheck
-                                                                                name="isActive"
-                                                                                onChange={
-                                                                                    handleChangeActive
+                                                                            style={{
+                                                                                backgroundColor: `${
+                                                                                    navCard ==
+                                                                                    1
+                                                                                        ? 'green'
+                                                                                        : 'red'
+                                                                                }`,
+                                                                                color: 'white',
+                                                                            }}
+                                                                            className="w-3/5 m-auto my-4 border-separate border-1 border-black rounded-xl"
+                                                                        >
+                                                                            <Card.Title className="mb-4">
+                                                                                {
+                                                                                    item.title
                                                                                 }
-                                                                                checked={
-                                                                                    isActive
+                                                                            </Card.Title>
+                                                                            <Card.Subtitle className="mb-2">
+                                                                                {
+                                                                                    item.typeOfCard
                                                                                 }
-                                                                                id={
-                                                                                    item.id
+                                                                            </Card.Subtitle>
+                                                                            <Card.Text className="mb-2">
+                                                                                <FontAwesomeIcon
+                                                                                    className="mr-2"
+                                                                                    icon={
+                                                                                        faBank
+                                                                                    }
+                                                                                    size="1x"
+                                                                                />
+                                                                                {
+                                                                                    item.number
                                                                                 }
-                                                                                type="switch"
-                                                                            />
-                                                                        </div>
-                                                                    </Card.Footer>
-                                                                </Card.Body>
-                                                            );
-                                                    })}
+                                                                            </Card.Text>
+                                                                            <Card.Footer>
+                                                                                <div className="float-right clear-left text-2xl">
+                                                                                    <FormCheck
+                                                                                        name="isActive"
+                                                                                        onChange={
+                                                                                            handleChangeActive
+                                                                                        }
+                                                                                        checked={
+                                                                                            isActive
+                                                                                        }
+                                                                                        id={
+                                                                                            item._id
+                                                                                        }
+                                                                                        type="switch"
+                                                                                    />
+                                                                                </div>
+                                                                            </Card.Footer>
+                                                                        </Card.Body>
+                                                                    );
+                                                            }
+                                                        )}
                                                 </Card>
                                             </div>
                                         </div>

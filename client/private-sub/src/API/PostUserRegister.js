@@ -4,7 +4,7 @@ export default async function PostUserRegister(FormDataRegister) {
     console.log(FormDataRegister.userName);
     try {
         const res = await axios.post(
-            `${Endpoint.API_STRING_localhost}/user/register`,
+            `${Endpoint.API_STRING}/user/register`,
             FormDataRegister
         );
         return res;

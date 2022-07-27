@@ -2,7 +2,7 @@ import axios from 'axios';
 import Endpoint from './Endpoint';
 export default async function getCardNumAPI({ typeOfCard }) {
     const typeCard = await axios
-        .get(`${Endpoint.API_STRING_localhost}/cc/number`, {
+        .get(`${Endpoint.API_STRING}/cc/number`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

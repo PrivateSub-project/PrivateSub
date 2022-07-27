@@ -23,7 +23,7 @@ Content-Type: application/json
 
 POST http://localhost:8000/cc/toggleActive
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU3MTUyNDkzLCJleHAiOjE2NTcxNTQyOTN9.N4u8RLw8wbDTQVwrnrgYL2siNSj-bjIlV6d3dHwRkYQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
 
 {
   "number": "1234567890123456"
@@ -34,16 +34,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhY
 
 POST http://localhost:8000/cc/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU3MTUyNDkzLCJleHAiOjE2NTcxNTQyOTN9.N4u8RLw8wbDTQVwrnrgYL2siNSj-bjIlV6d3dHwRkYQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
 
 {
     "user": "Nenad",
     "number": 1234567890123456,
-    "expiry": 1224,
-    "typeOfCard": "MasterCard",
-    "title": "Test card",
-    "cvc": 999,
-    "name": "Nenad",
+    "expiry": "12/24",
     "active": true
 }
 
@@ -73,21 +69,7 @@ POST http://localhost:8000/cc/addFunds
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
 
-
 {
   "number": "1234567890123456",
   "amount": 50
-}
-
-### Add subscription
-POST http://localhost:8000/subscription/
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU3NzQ5MjUyLCJleHAiOjE2NTc3NTEwNTJ9.G6kmoFra5br5ZaL_Rxz9bx1y0Luh8FD9sNbalk3giTo
-
-{
-  "brand": "Netflix",
-  "user": "Nenad",
-  "price": 50,
-  "creditCard": "123123123123",
-  "status": "12/12/2022"
 }
