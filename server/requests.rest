@@ -10,13 +10,13 @@ Content-Type: application/json
 
 ### Register user
 
-POST http://localhost:8000/user/register
+POST https://enigmatic-meadow-19488.herokuapp.com/user/register
 Content-Type: application/json
 
 {
-  "username": "Nenad",
-  "password": "test",
-  "password2": "test"
+  "username": "groige3i2312312331m312@yopmail.com",
+  "password": "test123!",
+  "password2": "test123!"
 }
 
 ### Toggle credit card status
