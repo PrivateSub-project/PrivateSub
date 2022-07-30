@@ -22,10 +22,7 @@
     "prettier": "2.7.1"
   },
   "dependencies": {
-<<<<<<< HEAD
     "bcrypt": "^5.0.1",
-=======
->>>>>>> 110952b5c02f4c2eb502d4323be7a5b0b8d470bc
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "creditcard-generator": "^0.0.7",
