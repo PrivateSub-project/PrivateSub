@@ -10,7 +10,7 @@ exports.registerUser = async (req, res) => {
         message: `Passwords do not match`,
       });
     } else {
-      if (UserModel.findOne({ username: req.body.username })) {
+      if (await UserModel.findOne({ username: req.body.username })) {
         res.status(400).json({
           message: `User already exists`,
         });
