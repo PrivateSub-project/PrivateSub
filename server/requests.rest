@@ -1,11 +1,11 @@
 ### Login user
 
-POST http://localhost:8000/user/login
+POST https://enigmatic-meadow-19488.herokuapp.com/user/login
 Content-Type: application/json
 
 {
-  "username": "Nenad",
-  "password": "test"
+  "username": "groig12123123@yopmail.com",
+  "password": "test123!"
 }
 
 ### Register user
@@ -14,7 +14,7 @@ POST https://enigmatic-meadow-19488.herokuapp.com/user/register
 Content-Type: application/json
 
 {
-  "username": "groige3i2312312331m312@yopmail.com",
+  "username": "groig12123123@yopmail.com",
   "password": "test123!",
   "password2": "test123!"
 }
