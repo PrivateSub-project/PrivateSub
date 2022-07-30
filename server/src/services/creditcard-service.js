@@ -19,10 +19,10 @@ exports.saveCreditCard = async (req, res) => {
 exports.returnCreditCardNumber = (req, res) => {
   try {
     if (req.query.type === 'VISA' || req.query.type === 'MasterCard') {
-      var number = generator.GenCC(req.body.type);
+      var numbers = generator.GenCC(req.body.type, 2);
       res.json({
         message: `Credit card number generated successfully`,
-        number: number[0],
+        number: numbers,
       });
     } else {
       res.status(400).json({ error: `Card type must be VISA or Mastercard` });
