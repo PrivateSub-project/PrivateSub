@@ -63,6 +63,7 @@
         ]
     },
     "devDependencies": {
+        "@babel/plugin-syntax-logical-assignment-operators": "^7.10.4",
         "autoprefixer": "^10.4.7",
         "eslint": "^8.15.0",
         "eslint-plugin-react": "^7.29.4",
