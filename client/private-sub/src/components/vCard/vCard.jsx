@@ -9,12 +9,13 @@ import ActivityCard from '../activityCard/ActivityCard';
 import getCardNumAPI from '../../API/GetAllCCUser';
 import jwtDecode from 'jwt-decode';
 import { contextCommon2 } from '../../utils';
+import ToggleActiveAPI from '../../API/ToggleActiveAPI';
 
 export default function vCard() {
     const { dataSteps, Final } = useContext(contextCommon2);
     const [navCard, setNavCard] = useState(1);
     const [dataAPI, setDataAPI] = useState([]);
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState();
     const handleTabNav = (e) => {
         try {
             const intData = parseInt(e.target.id);
@@ -23,24 +24,30 @@ export default function vCard() {
             console.log(err);
         }
     };
-    const handleChangeActive = (e) => {
+    const handleChangeActive = (e, numID) => {
         setIsActive(e.target.checked);
+        ToggleActiveAPI({ number: numID })
+            .then((value) => {
+                // navigate('/');
+                console.log(value.active);
+            })
+            .catch((err) => console.log(err));
     };
 
     useEffect(() => {
         console.log(Final);
         console.log(dataSteps);
         const nameData = jwtDecode(localStorage.getItem('token'));
-        console.log(nameData);
+        const name = nameData?.username?.split('@')[0];
         if (nameData)
-            getCardNumAPI(nameData.username)
+            getCardNumAPI(name)
                 .then((value) => {
                     // navigate('/');
                     console.log(value);
                     setDataAPI(value);
                 })
                 .catch((err) => console.log(err));
-    }, [Final]);
+    }, [Final, isActive]);
     return (
         <section className="h-full gradient-form  md:h-screen">
             <div className="container py-12 px-1 h-full">
@@ -141,9 +148,14 @@ export default function vCard() {
                                                                                 <div className="float-right clear-left text-2xl">
                                                                                     <FormCheck
                                                                                         name="isActive"
-                                                                                        onChange={
-                                                                                            handleChangeActive
-                                                                                        }
+                                                                                        onChange={(
+                                                                                            e
+                                                                                        ) => {
+                                                                                            handleChangeActive(
+                                                                                                e,
+                                                                                                item.number
+                                                                                            );
+                                                                                        }}
                                                                                         checked={
                                                                                             isActive
                                                                                         }
@@ -167,7 +179,7 @@ export default function vCard() {
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
-                        <ActivityCard />
+                        <ActivityCard dataAPI={dataAPI} />
                     </div>
                 </div>
             </div>

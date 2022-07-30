@@ -17,10 +17,11 @@ export default async function getCardNumAPI({ typeOfCard }) {
         return Promise.reject(error);
     }
     console.log(typeCard);
+
     if (typeCard)
         return Promise.resolve([
-            { number: typeCard?.data.number, cvc: 986, expiry: 2304 },
-            { number: typeCard?.data.number, cvc: 138, expiry: 2411 },
+            { number: typeCard?.data.number[0], cvc: 986, expiry: 2304 },
+            { number: typeCard?.data.number[1], cvc: 138, expiry: 2411 },
         ]);
     // user && localStorage.setItem('token', user.data?.token);
 }
