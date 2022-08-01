@@ -47,13 +47,13 @@ export default function RegisterForm() {
                                                         password,
                                                         confirmPassword,
                                                     } = values;
-                                                    const userName = email;
+                                                    const username = email;
 
                                                     const password2 =
                                                         confirmPassword;
 
                                                     PostUserRegister({
-                                                        userName,
+                                                        username,
                                                         password,
                                                         password2,
                                                     })

@@ -16,7 +16,7 @@ export default function Navbar() {
 
     if (user) {
         decodeUser = useMemo(() => decodeJWT(user), [user]);
-        arrayString = decodeUser.userName.split('@')[0];
+        arrayString = decodeUser?.userName?.split('@')[0];
     }
     console.log(user);
     const handleLogout = () => {

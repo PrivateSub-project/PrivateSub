@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import AddSubscribe from './screens/AddSubscribe/AddSubscribe';
 import Dashboard from './screens/Dashboard/Dashboard';
 import Home from './screens/Home/Home';
 import NoPage from './screens/NoPage/NoPage';
@@ -32,6 +33,14 @@ export default function App() {
                         element={
                             <ProtectedRoute>
                                 <VirtualCard />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/auth/addSubscribe"
+                        element={
+                            <ProtectedRoute>
+                                <AddSubscribe />
                             </ProtectedRoute>
                         }
                     />

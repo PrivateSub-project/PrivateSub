@@ -75,7 +75,7 @@ export default function VCardForm() {
                         focused={cvc}
                         preview
                         issuer={values.typeOfCard}
-                        acceptedCards={['visa', 'mastercard']}
+                        acceptedCards={['VISA', 'MasterCard']}
                     />
 
                     <Form onChange={handleChange}>
@@ -84,7 +84,7 @@ export default function VCardForm() {
                                 Select a card issuer
                             </option>
                             <option value="MasterCard">MasterCard</option>
-                            <option value="Visa">Visa</option>
+                            <option value="VISA">Visa</option>
                         </TextField>
 
                         <TextField isSelection={true} name="number">

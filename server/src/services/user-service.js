@@ -41,7 +41,7 @@ exports.loginUser = async (req, res) => {
             username: user.username,
           },
           auth.jwtOptions.secretOrKey,
-          { expiresIn: '1800s' }
+          { expiresIn: process.env.NODE_ENV === 'production' ? '1800s' : '1800000000000s' }
         );
         res.status(200).json({
           message: `User logged in`,
