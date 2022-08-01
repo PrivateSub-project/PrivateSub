@@ -9,20 +9,20 @@ exports.saveCreditCard = async (req, res) => {
     res.status(200).json({
       message: `Credit card created successfully`,
       data: newCreditCard,
-    });    
+    });
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: `Error creating credit card` });
   }
-}
+};
 
 exports.returnCreditCardNumber = (req, res) => {
   try {
     if (req.query.type === 'VISA' || req.query.type === 'MasterCard') {
-      var number = generator.GenCC(req.query.type);
+      var numbers = generator.GenCC(req.body.type, 2);
       res.json({
         message: `Credit card number generated successfully`,
-        number: number[0],
+        number: numbers,
       });
     } else {
       res.status(400).json({ error: `Card type must be VISA or Mastercard` });
