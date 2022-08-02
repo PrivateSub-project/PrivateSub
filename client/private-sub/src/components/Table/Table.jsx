@@ -14,8 +14,8 @@ import {
 import { Button, PageButton } from '../paginationBtn/PaginationBtm';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useNavigate } from 'react-router-dom';
 import FullScreenDialog from '../DialogSubsDetail/DialogSubsDetail';
+import AddSubModel from '../AddSubModel/AddSubModel';
 export function SelectColumnFilter({
     column: { filterValue, setFilter, preFilteredRows, id },
 }) {
@@ -137,10 +137,9 @@ function Table({ columns, data }) {
     }, []);
     const [dataTable, setDataTable] = useState();
     const [module, setModule] = useState();
-    const navigate = useNavigate();
-
+    const [moduleAdd, setModuleAdd] = useState(false);
     const handleBtn = () => {
-        navigate('/auth/addSubscribe', { replace: true });
+        setModuleAdd(true);
     };
 
     return (
@@ -326,6 +325,7 @@ function Table({ columns, data }) {
                 setModule={setModule}
                 data={dataTable}
             />
+            <AddSubModel model={moduleAdd} setModel={setModuleAdd} />
         </>
     );
 }
