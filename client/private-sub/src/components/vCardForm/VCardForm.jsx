@@ -79,7 +79,7 @@ export default function VCardForm() {
             }}
         >
             {({ values }) => (
-                <div className="flex">
+                <div className="flex flex-col lg:flex-row">
                     <Cards
                         cvc={cvcNum}
                         expiry={expiryNum}
