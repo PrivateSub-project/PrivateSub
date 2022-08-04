@@ -48,11 +48,13 @@ export default function Feature() {
                                         </Card.Header>
                                         <Card.Body>
                                             <Card.Text>
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                                Praesent non varius nibh. Cras
-                                                quis sapien sem. Curabitur eget
-                                                enim eget dui convallis lacinia.
+                                            Virtual Cards can be utilized to make purchases
+                                            in the same way as a physical card excluding
+                                            stress that comes with giving out your
+                                            card information online and being susceptible
+                                            to data breaches. With industry leading security
+                                            Authentication you can be sure that your data is
+                                            safe and secure.
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>
@@ -71,11 +73,11 @@ export default function Feature() {
                                         </Card.Header>
                                         <Card.Body>
                                             <Card.Text>
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                                Praesent non varius nibh. Cras
-                                                quis sapien sem. Curabitur eget
-                                                enim eget dui convallis lacinia.
+                                                Our website is meticulously crafted in
+                                                a way that is easy to navigate and is 
+                                                informative to both new and existing 
+                                                users about the world of Private 
+                                                payments.
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>
@@ -94,11 +96,10 @@ export default function Feature() {
                                         </Card.Header>
                                         <Card.Body>
                                             <Card.Text>
-                                                Lorem ipsum dolor sit amet,
-                                                consectetur adipiscing elit.
-                                                Praesent non varius nibh. Cras
-                                                quis sapien sem. Curabitur eget
-                                                enim eget dui convallis lacinia.
+                                            Protect your card details and your funds
+                                            by creating virtual payment cards, instead
+                                            of using a regular debit/credit card 
+                                            for each place you shop online.
                                             </Card.Text>
                                         </Card.Body>
                                     </Card>
