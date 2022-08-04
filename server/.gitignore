@@ -1,2 +1,5 @@
 .env
 node_modules
+requests.rest
+.vscode/
+./package-lock.json

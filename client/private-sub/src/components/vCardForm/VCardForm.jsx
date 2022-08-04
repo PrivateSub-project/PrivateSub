@@ -1,4 +1,5 @@
 import { Form, Formik } from 'formik';
+import jwtDecode from 'jwt-decode';
 import React, { useContext, useEffect, useState } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
@@ -10,6 +11,7 @@ export default function VCardForm() {
     const [cvcNum, setCvcNum] = useState('');
     const [expiryNum, setExpiryNum] = useState('');
     const [card, setCard] = useState(null);
+    const [user, setUser] = useState(null);
     const { setDataSteps, dataSteps, dataCardNum, setDataCardNum } =
         useContext(contextCommon2);
 
@@ -20,14 +22,19 @@ export default function VCardForm() {
             setCvc('');
         }, 3000);
     };
+    useEffect(() => {
+        setDataSteps((values) => ({
+            ...values,
+            cvc: cvcNum,
+            expiry: expiryNum,
+            name: user,
+        }));
+    }, [cvcNum, expiryNum]);
     const handleChange = (e) => {
         const { name, value } = e.target;
-
         setDataSteps((values) => ({
             ...values,
             [name]: value,
-            cvc: cvcNum,
-            expiry: expiryNum,
         }));
         if (name == 'number') {
             const [dataValue] = card.filter(
@@ -52,12 +59,18 @@ export default function VCardForm() {
                 })
                 .catch((err) => console.log(err));
     }, [dataCardNum]);
-
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const { username } = jwtDecode(token);
+        const usernameArr = username.split('@');
+        setUser(usernameArr[0]);
+    }, []);
+    console.log(dataSteps);
     return (
         <Formik
             initialValues={{
                 number: dataSteps?.number || '',
-                name: dataSteps?.name || '',
+                name: user,
                 typeOfCard: dataSteps?.typeOfCard || '',
             }}
             validationSchema={''}
@@ -66,16 +79,16 @@ export default function VCardForm() {
             }}
         >
             {({ values }) => (
-                <div className="flex">
+                <div className="flex flex-col lg:flex-row">
                     <Cards
                         cvc={cvcNum}
                         expiry={expiryNum}
-                        name={values.name}
+                        name={user}
                         number={values.number}
                         focused={cvc}
                         preview
                         issuer={values.typeOfCard}
-                        acceptedCards={['visa', 'mastercard']}
+                        acceptedCards={['VISA', 'MasterCard']}
                     />
 
                     <Form onChange={handleChange}>
@@ -84,7 +97,7 @@ export default function VCardForm() {
                                 Select a card issuer
                             </option>
                             <option value="MasterCard">MasterCard</option>
-                            <option value="Visa">Visa</option>
+                            <option value="VISA">Visa</option>
                         </TextField>
 
                         <TextField isSelection={true} name="number">
@@ -109,7 +122,12 @@ export default function VCardForm() {
                                 </option>
                             )}
                         </TextField>
-                        <TextField placeholder="name" name="name" />
+                        <TextField
+                            placeholder="name"
+                            value={user}
+                            name="name"
+                            disabled
+                        />
                     </Form>
                 </div>
             )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     useTable,
     useGlobalFilter,
@@ -12,6 +12,10 @@ import {
     faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { Button, PageButton } from '../paginationBtn/PaginationBtm';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import FullScreenDialog from '../DialogSubsDetail/DialogSubsDetail';
+import AddSubModel from '../AddSubModel/AddSubModel';
 export function SelectColumnFilter({
     column: { filterValue, setFilter, preFilteredRows, id },
 }) {
@@ -71,6 +75,7 @@ export function AvatarCell({ value, column, row }) {
                     alt=""
                 />
             </div>
+
             <div className="ml-4">
                 <div className="text-sm font-medium text-gray-900">{value}</div>
                 <div className="text-sm text-gray-500">
@@ -131,34 +136,58 @@ function Table({ columns, data }) {
     React.useEffect(() => {
         setPageSize(5);
     }, []);
+    const [dataTable, setDataTable] = useState();
+    const [module, setModule] = useState();
+    const [moduleAdd, setModuleAdd] = useState(false);
+    const handleBtn = () => {
+        setModuleAdd(true);
+    };
 
     return (
         <>
-            <div className="flex gap-x-2">
-                <GlobalFilter
-                    globalFilter={state.globalFilter}
-                    setGlobalFilter={setGlobalFilter}
-                />
-
-                {headerGroups.map((headerGroup) =>
-                    headerGroup.headers.map((column) =>
-                        column.Filter ? (
-                            <div
-                                className="flex gap-x-2 center"
-                                key={column.id}
+            <Row>
+                <Col xs={12}>
+                    <Row className="items-center">
+                        <Col sm={12} md={4}>
+                            <GlobalFilter
+                                globalFilter={state.globalFilter}
+                                setGlobalFilter={setGlobalFilter}
+                            />
+                        </Col>
+                        <Col sm={12} md={4}>
+                            {headerGroups.map((headerGroup) =>
+                                headerGroup.headers.map((column) =>
+                                    column.Filter ? (
+                                        <div
+                                            className="flex gap-x-2 center items-center"
+                                            key={column.id}
+                                        >
+                                            <label
+                                                className="w-full self-center text-white text-lg"
+                                                htmlFor={column.id}
+                                            >
+                                                {column.render('Header')}:
+                                            </label>
+                                            {column.render('Filter')}
+                                        </div>
+                                    ) : null
+                                )
+                            )}
+                        </Col>
+                        <Col sm={12} md={4}>
+                            <Button
+                                className="w-full justify-center"
+                                onClick={handleBtn}
                             >
-                                <label
-                                    className="w-full self-center text-white text-lg"
-                                    htmlFor={column.id}
-                                >
-                                    {column.render('Header')}:
-                                </label>
-                                {column.render('Filter')}
-                            </div>
-                        ) : null
-                    )
-                )}
-            </div>
+                                <p className="text-center">
+                                    Add new Subscription
+                                </p>
+                            </Button>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+
             <div className="mt-2 flex flex-col">
                 <div className="-my-2 overflow-x-auto -mx-4 sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -194,9 +223,20 @@ function Table({ columns, data }) {
                                     className="bg-white divide-y divide-gray-200 text-black"
                                 >
                                     {page.map((row, i) => {
+                                        const goToDetail = (r) => {
+                                            console.log(r);
+                                            setDataTable(r?.original);
+                                            setModule(true);
+                                        };
                                         prepareRow(row);
                                         return (
-                                            <tr key={i} {...row.getRowProps()}>
+                                            <tr
+                                                key={i}
+                                                {...row.getRowProps()}
+                                                onClick={() =>
+                                                    goToDetail(row, i)
+                                                }
+                                            >
                                                 {row.cells.map((cell) => {
                                                     return (
                                                         <td
@@ -281,6 +321,12 @@ function Table({ columns, data }) {
                     </div>
                 </div>
             </div>
+            <FullScreenDialog
+                module={module}
+                setModule={setModule}
+                data={dataTable}
+            />
+            <AddSubModel model={moduleAdd} setModel={setModuleAdd} />
         </>
     );
 }
