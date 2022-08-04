@@ -22,12 +22,14 @@ import getBrandAPI from '../../API/GetBrandAPI';
 import PostSubsList from '../../API/PostSubsList';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ContextCommon4 } from '../../utils';
 
 export default function AddSubModel({ setModel, model }) {
     const [allInputs, setAllInput] = React.useState({});
     const [disabled, setDisabled] = React.useState(true);
     const [CCNumState, setCCNum] = React.useState([]);
     const [status, setStatus] = React.useState('');
+    const { setIssue } = React.useContext(ContextCommon4);
     const [logoData, setLogo] = React.useState({
         logo: null,
         domain: null,
@@ -91,6 +93,8 @@ export default function AddSubModel({ setModel, model }) {
             imgUrl: logoData['logo'],
             url: logoData['domain'],
         });
+        setIssue(true);
+        setModel(false);
     };
 
     useEffect(() => {

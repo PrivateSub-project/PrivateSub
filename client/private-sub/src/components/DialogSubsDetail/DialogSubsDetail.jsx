@@ -65,7 +65,10 @@ export default function FullScreenDialog({ module, setModule, data }) {
                     <Container maxWidth="sm">
                         <Grid container sx={12}>
                             <Grid item>
-                                <RecipeReviewCard data={data} />
+                                <RecipeReviewCard
+                                    data={data}
+                                    setModule={setModule}
+                                />
                             </Grid>
                         </Grid>
                     </Container>

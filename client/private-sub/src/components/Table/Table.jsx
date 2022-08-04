@@ -75,6 +75,7 @@ export function AvatarCell({ value, column, row }) {
                     alt=""
                 />
             </div>
+
             <div className="ml-4">
                 <div className="text-sm font-medium text-gray-900">{value}</div>
                 <div className="text-sm text-gray-500">

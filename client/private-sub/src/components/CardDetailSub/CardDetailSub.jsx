@@ -12,8 +12,10 @@ import Typography from '@mui/material/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { green } from '@mui/material/colors';
-import { Chip, Grid } from '@mui/material';
+import { Box, Chip, FormControl, Grid, TextField } from '@mui/material';
 import { createTheme } from '@mui/system';
+import deleteSubs from '../../API/deleteSubs';
+import { ContextCommon4 } from '../../utils';
 
 const ExpandMore = styled((props) => {
     const { ...other } = props;
@@ -41,22 +43,40 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function RecipeReviewCard({ data }) {
+export default function RecipeReviewCard({ data, setModule }) {
     const [expanded, setExpanded] = React.useState(false);
-
+    const { setIssue } = React.useContext(ContextCommon4);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
+
+    const deleteItem = (id) => {
+        console.info(id);
+        deleteSubs(id).then((value) => {
+            console.info(value);
+            setIssue(true);
+            if (value) setModule(false);
+        });
+    };
+
     const handleDelete = () => {
-        console.info('You clicked the delete icon.');
+        deleteItem(data._id);
     };
     const handleClick = () => {
-        console.info('You clicked the Chip.');
+        deleteItem(data._id);
     };
     const theme = createTheme({
         spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
     });
-    console.log(data);
+    const [allInputs, setAllInput] = React.useState({});
+
+    const DateY = new Date(data.rawDate).getFullYear();
+    const DateM = new Date(data.rawDate).getMonth();
+    console.log(DateY.toString().slice(2) + '/' + DateM);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setAllInput({ ...allInputs, [name]: value });
+    };
     return (
         <Grid
             container
@@ -85,7 +105,7 @@ export default function RecipeReviewCard({ data }) {
                                 action={
                                     <IconButton aria-label="settings"></IconButton>
                                 }
-                                title="Youtube subscription"
+                                title={`${data?.brand} subscription`}
                                 subheader="Expire at September 14, 2023"
                             />
                         </Grid>
@@ -101,16 +121,17 @@ export default function RecipeReviewCard({ data }) {
                     </Grid>
                     <Cards
                         cvc={'523'}
-                        expiry={'05/23'}
-                        name={'Kamyab Rouhifar'}
-                        number={'XXXX XXXX XXXX 5236'}
+                        expiry={DateY.toString().slice(2) + '/' + DateM}
+                        name={data.user}
+                        number={data.creditCard}
                         preview
                         issuer={'MasterCard'}
                     />
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
                             This is subscription information for {data?.brand}{' '}
-                            brand with credit card number of starting '5236'
+                            brand with credit card number of ending{' '}
+                            {data.creditCard.slice(-4)}
                         </Typography>
                     </CardContent>
                     <CardActions disableSpacing>
@@ -122,7 +143,34 @@ export default function RecipeReviewCard({ data }) {
                         ></ExpandMore>
                     </CardActions>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
-                        <CardContent></CardContent>
+                        <CardContent>
+                            <Box component="form" noValidate autoComplete="off">
+                                <Grid
+                                    container
+                                    sx={12}
+                                    spacing={2}
+                                    flexDirection="column"
+                                >
+                                    <Grid item sx={12}>
+                                        <FormControl
+                                            fullWidth
+                                            sx={{ m: 1 }}
+                                            variant="filled"
+                                        >
+                                            <TextField
+                                                id="price"
+                                                label="price"
+                                                variant="filled"
+                                                type="number"
+                                                name="price"
+                                                onChange={handleChange}
+                                                value={allInputs.price}
+                                            ></TextField>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                            </Box>
+                        </CardContent>
                     </Collapse>
                 </Card>
             </Grid>
