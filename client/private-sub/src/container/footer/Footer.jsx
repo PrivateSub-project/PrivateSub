@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faInstagram,
@@ -13,7 +14,9 @@ export default function Footer() {
                 <h1 className="gradient__text text-2xl font-bold mb-2">
                     Do you want more information about us ?
                 </h1>
-                <button className="p-3 bg-transparent">About US</button>
+                <Link to="/about">
+                    <button className="p-3 bg-transparent">About US</button>
+                </Link>
             </div>
 
             <div className="gradient__border md:flex md:justify-between relative">
