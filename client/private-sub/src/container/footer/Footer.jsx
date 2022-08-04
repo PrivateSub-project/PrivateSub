@@ -1,12 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faInstagram,
-    faGithub,
-    faMicrosoft,
-    faWhatsapp,
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 export default function Footer() {
     return (
         <footer className="p-4 bg-slate-200 sm:p-6 dark:bg-gray-900">
@@ -38,17 +33,25 @@ export default function Footer() {
                         Virtual credit card
                     </span>
                 </div>
-                <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
                     <div>
                         <h2 className="mb-6 text-sm font-bold text-gray-900 uppercase dark:text-white">
                             Resources
                         </h2>
                         <span className="flex flex-col text-white">
-                            <a href="#" className="hover:underline mb-4">
+                            <a
+                                href="https://reactjs.org/"
+                                target="_blank"
+                                className="hover:underline mb-4"
+                            >
                                 React.js
                             </a>
 
-                            <a href="#" className="hover:underline">
+                            <a
+                                href="https://tailwindcss.com/"
+                                target="_blank"
+                                className="hover:underline"
+                            >
                                 Tailwind CSS
                             </a>
                         </span>
@@ -58,16 +61,20 @@ export default function Footer() {
                             Follow us
                         </h2>
                         <span className="flex flex-col text-white">
-                            <a href="#" className="hover:underline mb-4">
+                            {/* <a href="#" className="hover:underline mb-4">
                                 Instagram
-                            </a>
+                            </a> */}
 
-                            <a href="#" className="hover:underline">
+                            <a
+                                href="https://github.com/PrivateSub-project/PrivateSub"
+                                target="_blank"
+                                className="hover:underline"
+                            >
                                 Github
                             </a>
                         </span>
                     </div>
-                    <div>
+                    {/* <div>
                         <h2 className="mb-6 text-sm font-bold text-gray-900 uppercase dark:text-white">
                             Legal
                         </h2>
@@ -80,7 +87,7 @@ export default function Footer() {
                                 Terms &amp; Conditions
                             </a>
                         </span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
@@ -93,30 +100,31 @@ export default function Footer() {
                     . All Rights Reserved.
                 </span>
                 <div className="flex space-x-6 sm:justify-center sm:mt-0">
-                    <a
+                    {/* <a
                         href="#"
                         className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     >
                         <FontAwesomeIcon icon={faInstagram} size="2x" />
-                    </a>
+                    </a> */}
                     <a
-                        href="#"
+                        href="https://github.com/PrivateSub-project/PrivateSub"
+                        target="_blank"
                         className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     >
                         <FontAwesomeIcon icon={faGithub} size="2x" />
                     </a>
-                    <a
+                    {/* <a
                         href="#"
                         className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     >
                         <FontAwesomeIcon icon={faMicrosoft} size="2x" />
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                         href="#"
                         className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
                     >
                         <FontAwesomeIcon icon={faWhatsapp} size="2x" />
-                    </a>
+                    </a> */}
                     <a
                         href="#"
                         className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
