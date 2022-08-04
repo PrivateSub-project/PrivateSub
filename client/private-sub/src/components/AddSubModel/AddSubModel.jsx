@@ -93,19 +93,7 @@ export default function AddSubModel({ setModel, model }) {
             imgUrl: logoData['logo'],
             url: logoData['domain'],
         });
-        setIssue(true);
-        setModel(false);
-    };
-
-    useEffect(() => {
-        console.log('allSubmit', allSubmit);
-        if (allSubmit?.imgUrl) {
-            PostSubsList(allSubmit)
-                .then((value) => {
-                    console.log(value);
-                })
-                .catch((err) => console.log(err));
-        } else
+        if (!logoData['logo']) {
             toast.error('No Brand Domain Available', {
                 position: 'top-right',
                 autoClose: 5000,
@@ -115,10 +103,22 @@ export default function AddSubModel({ setModel, model }) {
                 draggable: true,
                 progress: undefined,
             });
-    }, [allSubmit]);
+            return;
+        }
+        setIssue(true);
+        setModel(false);
+    };
+
     useEffect(() => {
-        console.log(CCNumState);
-    }, [CCNumState]);
+        console.log('allSubmit', allSubmit);
+        if (allSubmit?.imgUrl && !model) {
+            PostSubsList(allSubmit)
+                .then((value) => {
+                    console.log(value);
+                })
+                .catch((err) => console.log('err' + err.message));
+        }
+    }, [allSubmit, model]);
 
     return (
         <>

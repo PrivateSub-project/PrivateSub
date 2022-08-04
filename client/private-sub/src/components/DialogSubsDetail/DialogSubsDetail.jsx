@@ -11,6 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import RecipeReviewCard from '../CardDetailSub/CardDetailSub';
+import editSubs from '../../API/editSubs';
+import { useContext } from 'react';
+import { ContextCommon4 } from '../../utils';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -23,9 +26,20 @@ const darkTheme = createTheme({
 });
 
 export default function FullScreenDialog({ module, setModule, data }) {
+    const { setIssue } = useContext(ContextCommon4);
+
     const handleClose = () => {
         setModule(false);
     };
+    const handleSubmit = () => {
+        editSubs(data._id, price).then((value) => {
+            if (value) {
+                setIssue(true);
+                setModule(false);
+            }
+        });
+    };
+    const [price, setPrice] = React.useState();
 
     return (
         <ThemeProvider theme={darkTheme}>
@@ -56,7 +70,7 @@ export default function FullScreenDialog({ module, setModule, data }) {
                             <Button
                                 autoFocus
                                 color="inherit"
-                                onClick={handleClose}
+                                onClick={handleSubmit}
                             >
                                 save
                             </Button>
@@ -68,6 +82,8 @@ export default function FullScreenDialog({ module, setModule, data }) {
                                 <RecipeReviewCard
                                     data={data}
                                     setModule={setModule}
+                                    setPrice={setPrice}
+                                    price={price}
                                 />
                             </Grid>
                         </Grid>
