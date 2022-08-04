@@ -5,11 +5,12 @@ import FormSlider from './FormSlider';
 import './SliderCard.css';
 import { contextCommon2 } from '../../utils';
 import PostCreditCard from '../../API/PostCreditCard';
+import {} from 'react';
+import { useCallback } from 'react';
 
 export default function index() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const { dataSteps } = useContext(contextCommon2);
-
+    const { dataSteps, setFinal } = useContext(contextCommon2);
     const handleIndexChange = (index) => {
         setCurrentIndex(index);
     };
@@ -21,17 +22,16 @@ export default function index() {
         setCurrentIndex(currentIndex - 1);
     };
 
-    const handleComplete = () => {
-        const amount = parseInt(dataSteps.amount);
-        console.log({ ...dataSteps, amount });
+    const handleComplete = useCallback(() => {
         if (dataSteps)
             PostCreditCard(dataSteps)
                 .then((value) => {
                     // navigate('/');
-                    console.log(value);
+                    console.log(value.data.name);
+                    setFinal(true);
                 })
                 .catch((err) => console.log(err));
-    };
+    }, [dataSteps]);
 
     return (
         <div className="flex font-serif p-1 h-100">

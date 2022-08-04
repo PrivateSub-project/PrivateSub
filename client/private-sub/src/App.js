@@ -2,6 +2,9 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import ContactUs from './screens/ContactUs/ContactUs';
+import About from './screens/About/About';
+import AddSubscribe from './screens/AddSubscribe/AddSubscribe';
 import Dashboard from './screens/Dashboard/Dashboard';
 import Home from './screens/Home/Home';
 import NoPage from './screens/NoPage/NoPage';
@@ -35,6 +38,16 @@ export default function App() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route
+                        path="/auth/addSubscribe"
+                        element={
+                            <ProtectedRoute>
+                                <AddSubscribe />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contactus" element={<ContactUs />} />
                     <Route path="*" element={<NoPage />} />
                 </Routes>
             </Context>

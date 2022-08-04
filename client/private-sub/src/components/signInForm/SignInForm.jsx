@@ -198,13 +198,13 @@ export default function SignInForm() {
                                                                 console.log(
                                                                     values
                                                                 );
-                                                                const userName =
+                                                                const username =
                                                                     values.email;
                                                                 const {
                                                                     password,
                                                                 } = values;
                                                                 setData({
-                                                                    userName,
+                                                                    username,
                                                                     password,
                                                                 });
                                                                 actions.setSubmitting(

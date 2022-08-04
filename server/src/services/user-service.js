@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const UserModel = require('../models/user-model');
 const logger = require('../logger');
 const auth = require('../jwt');
@@ -10,7 +10,7 @@ exports.registerUser = async (req, res) => {
         message: `Passwords do not match`,
       });
     } else {
-      if (UserModel.findOne({ username: req.body.username })) {
+      if (await UserModel.findOne({ username: req.body.username })) {
         res.status(400).json({
           message: `User already exists`,
         });
@@ -41,7 +41,7 @@ exports.loginUser = async (req, res) => {
             username: user.username,
           },
           auth.jwtOptions.secretOrKey,
-          { expiresIn: '1800s' }
+          { expiresIn: process.env.NODE_ENV === 'production' ? '1800s' : '1800000000000s' }
         );
         res.status(200).json({
           message: `User logged in`,
