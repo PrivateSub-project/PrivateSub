@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feature, VCard, SubscriptionList } from '../../components';
-import { ContextSteps } from '../../utils';
+import { ContextSteps, ContextSteps2 } from '../../utils';
 export default function Main({ VCards = false, Dashboard = false }) {
     if (VCards)
         return (
@@ -8,6 +8,11 @@ export default function Main({ VCards = false, Dashboard = false }) {
                 <VCard />
             </ContextSteps>
         );
-    if (Dashboard) return <SubscriptionList />;
+    if (Dashboard)
+        return (
+            <ContextSteps2>
+                <SubscriptionList />
+            </ContextSteps2>
+        );
     return <Feature />;
 }
