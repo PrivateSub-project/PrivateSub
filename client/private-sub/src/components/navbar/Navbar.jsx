@@ -54,8 +54,12 @@ export default function Navbar() {
                             <Link to="/auth/virtualcard">
                                 <li>Virtual Card</li>
                             </Link>
-                            <li>Contact Us</li>
-                            <li>About</li>
+                            <Link to="/contactus">
+                                <li>Contact Us</li>
+                            </Link>
+                            <Link to="/about">
+                                <li>About</li>
+                            </Link>
                             <Link
                                 to={user ? '/' : 'signin'}
                                 className="cursor-pointer"
