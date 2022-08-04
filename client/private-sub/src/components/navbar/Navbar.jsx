@@ -33,18 +33,22 @@ export default function Navbar() {
             <div className="w-screen h-[80px] z-10 bg-transparent text-white drop-shadow-lg">
                 <div className="px-2 flex justify-between items-center w-full h-full">
                     <div className="flex items-center">
-                        <img
-                            className="p-1 bg-white border rounded-lg w-16"
-                            src="https://avatars.githubusercontent.com/u/104939323?s=400&u=f8c7cf359d55bf438e89317720f26b03abcfee05&v=4"
-                            alt="logo"
-                        />
-                        <h1 className="text-3xl font-bold mx-5 sm:text-4xl">
-                            {decodeUser?.userName ? (
-                                <>Hello {arrayString}</>
-                            ) : (
-                                <>PrivateSub</>
-                            )}
-                        </h1>
+                        <a href="/">
+                            <img
+                                className="p-1 bg-white border rounded-lg w-16"
+                                src="https://avatars.githubusercontent.com/u/104939323?s=400&u=f8c7cf359d55bf438e89317720f26b03abcfee05&v=4"
+                                alt="logo"
+                            />
+                        </a>
+                        <a href="/">
+                            <h1 className="text-3xl font-bold mx-5 sm:text-4xl">
+                                {decodeUser?.userName ? (
+                                    <>Hello {arrayString}</>
+                                ) : (
+                                    <>PrivateSub</>
+                                )}
+                            </h1>
+                        </a>
                     </div>
                     <div className="hidden md:flex pr-4 mr-6">
                         <ul className="hidden md:flex items-center">

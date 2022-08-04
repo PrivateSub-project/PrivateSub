@@ -4,6 +4,6 @@ import CreateContext from './contextCommon';
 export default function ProtectedRoute({ children }) {
     const { userPhone } = useContext(CreateContext);
     console.log('Check user in Private: ', userPhone);
-    if (!userPhone) return <Navigate to="/" />;
+    if (!userPhone) return <Navigate to="/signin" />;
     return children;
 }
