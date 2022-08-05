@@ -1,0 +1,12 @@
+    .textDollar{
+        position:relative;
+        }
+    
+    .textDollar:after{
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        font-size: large;
+        content: '$';
+        color: gray;
+    }

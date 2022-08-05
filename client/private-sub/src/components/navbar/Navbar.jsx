@@ -1,35 +1,78 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
+import { decodeJWT } from '../../utils';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
 
 export default function Navbar() {
     const [nav, setNav] = useState(false);
+    const [user, setUser] = useState(localStorage.getItem('token'));
     const handleClick = () => setNav(!nav);
+    let decodeUser = null;
+    let arrayString = [];
+
+    if (user) {
+        decodeUser = useMemo(() => decodeJWT(user), [user]);
+        arrayString = decodeUser?.userName?.split('@')[0];
+    }
+    console.log(user);
+    const handleLogout = () => {
+        if (user) {
+            signOut(auth).then(() => {
+                console.log('You are unauthorized');
+                setUser(localStorage.clear());
+                window.location.reload(false);
+            });
+        }
+    };
     return (
         <React.Fragment>
             <div className="w-screen h-[80px] z-10 bg-transparent text-white drop-shadow-lg">
                 <div className="px-2 flex justify-between items-center w-full h-full">
                     <div className="flex items-center">
-                        <img
-                            className="p-1 bg-white border rounded-lg w-16"
-                            src="https://avatars.githubusercontent.com/u/104939323?s=400&u=f8c7cf359d55bf438e89317720f26b03abcfee05&v=4"
-                            alt="logo"
-                        />
-                        <h1 className="text-3xl font-bold mx-5 sm:text-4xl">
-                            PrivateSub
-                        </h1>
+                        <a href="/">
+                            <img
+                                className="p-1 bg-white border rounded-lg w-16"
+                                src="https://avatars.githubusercontent.com/u/104939323?s=400&u=f8c7cf359d55bf438e89317720f26b03abcfee05&v=4"
+                                alt="logo"
+                            />
+                        </a>
+                        <a href="/">
+                            <h1 className="text-3xl font-bold mx-5 sm:text-4xl">
+                                {decodeUser?.userName ? (
+                                    <>Hello {arrayString}</>
+                                ) : (
+                                    <>PrivateSub</>
+                                )}
+                            </h1>
+                        </a>
                     </div>
                     <div className="hidden md:flex pr-4 mr-6">
                         <ul className="hidden md:flex items-center">
-                            <li>Dashboard</li>
-                            <li>Virtual Card</li>
-                            <li>Contact Us</li>
-                            <li>About</li>
-                            <Link to="signin" className="cursor-pointer">
+                            <Link to="/auth/dashboard">
+                                <li>Dashboard</li>
+                            </Link>
+                            <Link to="/auth/virtualcard">
+                                <li>Virtual Card</li>
+                            </Link>
+                            <Link to="/contactus">
+                                <li>Contact Us</li>
+                            </Link>
+                            <Link to="/about">
+                                <li>About</li>
+                            </Link>
+                            <Link
+                                to={user ? '/' : 'signin'}
+                                className="cursor-pointer"
+                                onClick={handleLogout}
+                            >
                                 <li className="flex border-l-2 border-zinc-500 m-auto h-5">
-                                    <span className="self-center">Sign In</span>
+                                    <span className="self-center">
+                                        {user ? 'logout' : 'Sign In'}
+                                    </span>
                                 </li>
                             </Link>
                         </ul>
@@ -67,8 +110,13 @@ export default function Navbar() {
                         </li>
 
                         <div className="flex flex-col my-4 signIn__shadow transition-colors">
-                            <Link to="signin" className="cursor-pointer">
-                                <button className="px-8 py-2">Sign In</button>
+                            <Link
+                                to={user ? '/' : 'signin'}
+                                className="cursor-pointer"
+                            >
+                                <button className="px-8 py-2">
+                                    {user ? 'logout' : 'Sign In'}
+                                </button>
                             </Link>
                         </div>
                     </ul>

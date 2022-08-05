@@ -1,7 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
 export default function Title() {
+    const user = localStorage.getItem('token');
     return (
         <Container fluid>
             <Row className="mt-20">
@@ -13,27 +15,29 @@ export default function Title() {
                                 Allover Canadian Provinces
                             </h1>
                             <p className="text-white text-justify text-lg my-3">
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Praesent non varius nibh. Cras
-                                quis sapien sem. Curabitur eget enim eget dui
-                                convallis lacinia. Aenean euismod odio eros, sit
-                                amet auctor massa faucibus sit amet. Sed
-                                vulputate metus at lacinia condimentum.
+                            PrivateSub enables you to take control over who charges
+                            you and the amount they charge. With PrivateSub you can
+                            create virtual payment cards for one-time purchases or
+                            subscriptions directly from your browser. You can pause
+                            and unpause and close cards anytime you want. PrivateSub
+                            gives you peace of mind by securing your purchases online
+                            by masking your real credit card data from unwanted traffic.
                             </p>
                         </div>
-
-                        <div className="flex justify-center md:justify-end items-center text-2xl my-6 font-bold text-white">
-                            <Link to="signin">
-                                <button className="px-4 py-2 mr-6 bg-orange-600">
-                                    Sign In
-                                </button>
-                            </Link>
-                            <Link to="register">
-                                <button className="px-4 py-2 bg-orange-600">
-                                    Register
-                                </button>
-                            </Link>
-                        </div>
+                        {!user && (
+                            <div className="flex justify-center md:justify-end items-center text-2xl my-6 font-bold text-white">
+                                <Link to="signin">
+                                    <button className="px-4 py-2 mr-6 bg-orange-600">
+                                        Sign In
+                                    </button>
+                                </Link>
+                                <Link to="register">
+                                    <button className="px-4 py-2 bg-orange-600">
+                                        Register
+                                    </button>
+                                </Link>
+                            </div>
+                        )}
                     </div>
                 </Col>
                 <Col xs={12} md={6}>
