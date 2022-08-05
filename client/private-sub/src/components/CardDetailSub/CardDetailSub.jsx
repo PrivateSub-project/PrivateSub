@@ -134,6 +134,9 @@ export default function RecipeReviewCard({ data, setModule }) {
                             {data.creditCard.slice(-4)}
                         </Typography>
                     </CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                        Your Next Payment is on September 11, 2022
+                    </Typography>
                     <CardActions disableSpacing>
                         <ExpandMore
                             expand={expanded}
