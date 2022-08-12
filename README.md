@@ -22,8 +22,8 @@ Traditional credit cards mostly rely on banking systems with the current use of 
 
 # User Manual
 
-TBD
+TBD - by Majd
 
 # Installation Manual
 
-TBD
+TBD - by Kamyab
