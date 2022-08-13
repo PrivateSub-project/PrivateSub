@@ -92,3 +92,21 @@ exports.toggleActive = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+exports.updateCreditCard = async (req, res) => {
+  try {
+    const result = await CreditCardModel.findOne(
+      { number: req.body.creditCard },
+      {
+        new: true,
+      }
+    );
+    res.status(200).json({
+      message: `Credit card with id ${req.params.id} successfully updated`,
+      result: result,
+    });
+  } catch (error) {
+    logger.error(error);
+    res.status(404).json({ message: `Cannot find subscription with provided id` });
+  }
+};
