@@ -1,16 +1,16 @@
 ### Login user
 
-POST https://enigmatic-meadow-19488.herokuapp.com/user/login
+POST http://localhost:8000/user/login
 Content-Type: application/json
 
 {
-  "username": "groig12123123@yopmail.com",
-  "password": "test123!"
+  "username": "Nenad",
+  "password": "test"
 }
 
 ### Register user
 
-POST https://enigmatic-meadow-19488.herokuapp.com/user/register
+POST http://localhost:8000/user/register
 Content-Type: application/json
 
 {
@@ -34,20 +34,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhY
 
 POST http://localhost:8000/cc/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjYwMzQ0NzQzLCJleHAiOjE4MDE2NjAzNDQ3NDN9.UZn6mjQZ8W6iwWM03bvJcoDacB7mNBanapjZueNZMwQ
 
 {
     "user": "Nenad",
-    "number": 1234567890123456,
-    "expiry": "12/24",
-    "active": true
+    "number": "4716652356220645",
+    "expiry": 1224,
+    "active": true,
+    "name": "Test",
+    "cvc": 111,
+    "title": "Testing",
+    "typeOfCard": "VISA"
 }
 
 ### Get all CCs for user
 
 GET http://localhost:8000/cc/Nenad
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTc5OTA4LCJleHAiOjE2NTY5ODE3MDh9.WjLnoJ-grGMaj14xELKPxHLOt1Xvbsn0rsFFAMonYJQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjYwMzQ0NzQzLCJleHAiOjE4MDE2NjAzNDQ3NDN9.UZn6mjQZ8W6iwWM03bvJcoDacB7mNBanapjZueNZMwQ
 
 {
     "user": "Nenad"
@@ -55,21 +59,54 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhY
 
 ### Get CC number
 
-GET http://localhost:8000/cc/number
+GET http://localhost:8000/cc/number?type=VISA
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjYwMzQ1NTQyLCJleHAiOjE4MDE2NjAzNDU1NDJ9.i22Z87mKkblT-RFB72yeAHAjINq5fW71RfkQeoPueJ8
 
 {
-  "type": "MasterCard"
+  "type": "VISA"
 }
 
 ### Fund CC
 
 POST http://localhost:8000/cc/addFunds
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmMwODVhYzBmMmJlMzIzNGI3NTQ4NDIiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU2OTgxNzU4LCJleHAiOjE2NTY5ODM1NTh9.OGk_JNBSkwbKhyFLlTXsJj8j5eX2dlUxoOECO7Z-CKU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjYwMzQ0NzQzLCJleHAiOjE4MDE2NjAzNDQ3NDN9.UZn6mjQZ8W6iwWM03bvJcoDacB7mNBanapjZueNZMwQ
+
 
 {
-  "number": "1234567890123456",
+  "number": "4716652356220645",
   "amount": 50
+}
+
+### Post subscription
+POST http://localhost:8000/subscription
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjYwMzQ0NzQzLCJleHAiOjE4MDE2NjAzNDQ3NDN9.UZn6mjQZ8W6iwWM03bvJcoDacB7mNBanapjZueNZMwQ
+
+{
+  "brand": "CC Update Test 2",
+  "user": "Nenad",
+  "price": 25,
+  "creditCard": "4716652356220645",
+  "status": "Active"
+}
+
+### Delete subscription
+DELETE http://localhost:8000/subscription/62eb1a6ce3c5e84dedead902
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU5NTY4NjkxLCJleHAiOjE4MDE2NTk1Njg2OTF9.Dt1E3CZQKmtXP78rXyQmlY5VUYK7QzLqtaR0-1s5vJ8
+
+{
+
+}
+
+### Update Subscription
+PUT http://localhost:8000/subscription/62eb1a6ce3c5e84dedead902
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmUxYzE4MzMyMDMzMjk0ZWZlMTI3NmMiLCJ1c2VybmFtZSI6Ik5lbmFkIiwiaWF0IjoxNjU5NTY4NjkxLCJleHAiOjE4MDE2NTk1Njg2OTF9.Dt1E3CZQKmtXP78rXyQmlY5VUYK7QzLqtaR0-1s5vJ8
+
+{
+  "brand": "Updated",
+  "price": 100
 }

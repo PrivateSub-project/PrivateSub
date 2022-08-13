@@ -232,6 +232,7 @@ export default function AddSubModel({ setModel, model }) {
                                             value={allInputs.price}
                                         ></TextField>
                                     </FormControl>
+                                    * This price will be deducted monthly
                                 </Grid>
                             </Grid>
                         </Box>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faInstagram,
@@ -14,15 +13,13 @@ export default function Footer() {
                 <h1 className="gradient__text text-2xl font-bold mb-2">
                     Do you want more information about us ?
                 </h1>
-                <Link to="/about">
-                    <button className="p-3 bg-transparent">About US</button>
-                </Link>
+                <button className="p-3 bg-transparent">About US</button>
             </div>
 
             <div className="gradient__border md:flex md:justify-between relative">
                 <div className="mb-6 md:mb-0">
                     <a
-                        href="https://flowbite.com"
+                        href="https://privatesub-project.web.app/"
                         className="flex items-center"
                     >
                         <img
@@ -87,7 +84,7 @@ export default function Footer() {
             <div className="sm:flex sm:items-center sm:justify-between">
                 <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
                     © 2022{' '}
-                    <a href="https://flowbite.com" className="hover:underline">
+                    <a href="https://privatesub-project.web.app/" className="hover:underline">
                         PrivateSub™
                     </a>
                     . All Rights Reserved.
