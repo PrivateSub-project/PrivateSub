@@ -43,7 +43,7 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function RecipeReviewCard({ data, setModule }) {
+export default function RecipeReviewCard({ data, setModule, setPrice, price }) {
     const [expanded, setExpanded] = React.useState(false);
     const { setIssue } = React.useContext(ContextCommon4);
     const handleExpandClick = () => {
@@ -68,14 +68,13 @@ export default function RecipeReviewCard({ data, setModule }) {
     const theme = createTheme({
         spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
     });
-    const [allInputs, setAllInput] = React.useState({});
 
     const DateY = new Date(data.rawDate).getFullYear();
     const DateM = new Date(data.rawDate).getMonth();
     console.log(DateY.toString().slice(2) + '/' + DateM);
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setAllInput({ ...allInputs, [name]: value });
+        const { value } = e.target;
+        setPrice(value);
     };
     return (
         <Grid
@@ -167,7 +166,7 @@ export default function RecipeReviewCard({ data, setModule }) {
                                                 type="number"
                                                 name="price"
                                                 onChange={handleChange}
-                                                value={allInputs.price}
+                                                value={price}
                                             ></TextField>
                                         </FormControl>
                                     </Grid>
