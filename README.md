@@ -12,7 +12,7 @@ ACCESS LINK : [DEMO](https://privatesub-project.web.app/)
 | Nenad Ostojic   | nostojic   | nostojic@myseneca.ca   |
 | Yuri Yoon       | yulque     | yryoon@myseneca.ca     |
 
-### Background
+### What Is PrivateSub?
 
 ---
 
@@ -20,10 +20,17 @@ As technology has been developed and modernized, it improves the peoples’ dema
 
 Traditional credit cards mostly rely on banking systems with the current use of physical payments cards. Any mistake of using the cards for purchasing ‘purposes can cause time-consuming to put the client through a representative for any solving problems. Although physical cards can be used for online memberships, more issues have been encountered in this case, like the process of re-issuing and filling in the repetitive forms when expired, lost, or stolen. Consequently, Certain businesses will discover the criteria of having physical cards are a less flexible choice and do not always match the scenarios of customer’s needs. By reducing the substantial number of casualties, our objectives need to be productive and convenient to improve customer requirements.
 
-# User Manual
+### PrivateSub User Guide
+---
+Register for PrivateSub [here](https://privatesub-project.web.app/), Create a Username and Password unique to you.
 
-TBD - by Majd
+![Register](client/private-sub/Register.JPG)
 
-# Installation Manual
+Sign in into your privatesub-project.web.app:
 
+![Signin](client/private-sub/Sign in.JPG)
+
+### Installation Manual
+
+---
 TBD - by Kamyab
