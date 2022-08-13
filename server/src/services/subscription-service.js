@@ -6,13 +6,17 @@ exports.addSubscription = async (req, res) => {
   try {
     const newSubscription = await SubscriptionModel.create(req.body);
     const updatedCC = await CreditCardModel.findOne({ number: req.body.creditCard }).exec();
-    updatedCC.amount = updatedCC.amount - req.body.price;
-    updatedCC.spent = updatedCC.spent + req.body.price;
-    await updatedCC.save();
-    res.status(200).json({
-      message: `Subscription added successfully`,
-      data: { ...newSubscription._doc, spent: updatedCC.spent },
-    });
+    if (updatedCC.amount - req.body.price < 0) {
+      res.status(400).json({ message: `Not enough funds on credit card for this subscription` });
+    } else {
+      updatedCC.amount = updatedCC.amount - req.body.price;
+      updatedCC.spent = updatedCC.spent + req.body.price;
+      await updatedCC.save();
+      res.status(200).json({
+        message: `Subscription added successfully`,
+        data: { ...newSubscription._doc, spent: updatedCC.spent },
+      });
+    }
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: `Error creating subscription` });
