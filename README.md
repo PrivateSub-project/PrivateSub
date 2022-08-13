@@ -28,8 +28,54 @@ Register for PrivateSub [here](https://privatesub-project.web.app/), Create a Us
 
 Sign in into your privatesub-project.web.app:
 
-![Signin](client/private-sub/Sign in.JPG)
+![Signin](client/private-sub/Signin.JPG)
 
+Upong signing in, ensure to input your phone number for 2FA for your saftey prior to logging in.
+
+![2FA](client/private-sub/2FA.JPG)
+
+Once Logged in you will be brought to a front page where you can read all the information needed about PrivateSub. 
+
+Using PrivateSub
+---
+Start by going into the Virtual Card Tab, you will be brought to a Activity Card Page Where you can start by creating a Virtual Card to use.
+
+![Create](client/private-sub/VirtualCard.JPG)
+
+#### To create a card do the following: 
+1. [Select a card issuer](#select)
+2. [Select a Card Number](#inputCardNumber)
+3. [Click on Next](#next)
+4. [Add a Funding Amount to load into the Virtual Card to be able to use it](#Funding)
+5. [Add a special title for your card for better tracking](#title)
+6. [Click Next](#Next)
+
+
+You will then review your added information and can Complete when satisfied to create the card:
+
+![Cardinfo](client/private-sub/CardInfo.JPG)
+
+Once the card is created, you can go back to the virtual card tab and view your created card and enable it, in addition you will get to view *Daily Spend*, *Monthly Spend* & *Credit Available*
+
+![NewCard](client/private-sub/NewCard.JPG)
+
+Adding a Subscription
+---
+### To add a new subscription using your newly created card do the following: 
+1. [Go to the Dashboard tab](#dashboard)
+2. [Click on add new subscription](#addnew)
+3. [Search for a brand](#brand)
+4. [Select your Credit Card](#select)
+5. [Input desired Monthly amount to spend](#monthly)
+6. [Click on Add](#add)
+
+You should then see your Subscription added to your list of subscriptions under subscription list
+
+![subList](client/private-sub/subsList.JPG)
+
+Additionally, you can edit the monthly amount or delete your saved subscription by clicking on it from the list, here you will also know when the next payment will be taken off your account. 
+
+![editSub](client/private-sub/editsub.JPG)
 ### Installation Manual
 
 ---
