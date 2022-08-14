@@ -79,4 +79,46 @@ Additionally, you can edit the monthly amount or delete your saved subscription 
 ### Installation Manual
 
 ---
-TBD - by Kamyab
+To start application with port 8080 :
+
+```bash
+npm start
+```
+
+- install the Firebase CLI via npm in system environment
+
+```bash
+npm install -g firebase-tools
+```
+
+- log in and test the Firebase CLI using your Google account
+
+```bash
+firebase login
+```
+
+- test that the CLI is properly installed and accessing your account by listing your Firebase projects
+
+```bash
+firebase projects:list
+```
+- It will show  privatesub-project (current) as project ID
+![image](https://user-images.githubusercontent.com/54970142/184522341-3c33bc16-a5c9-43f1-9879-2f4c1d46c306.png)
+
+---
+
+### Deploy and build Application
+
+- build react project before implementation of firebase application deployment 
+
+```bash
+npm run build
+```
+
+```bash
+firebase deploy
+```
+
+### Result
+
+![image](https://user-images.githubusercontent.com/54970142/184522400-2fcd628d-c5d0-4a7d-bcf7-7a350e93d419.png)
