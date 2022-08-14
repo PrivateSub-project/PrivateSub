@@ -77,9 +77,27 @@ Additionally, you can edit the monthly amount or delete your saved subscription 
 
 ![editSub](client/private-sub/editsub.JPG)
 ### Installation Manual
-
 ---
-To start application with port 8080 :
+- need to clone project from github repo
+
+```bash
+git clone https://github.com/PrivateSub-project/PrivateSub.git
+```
+
+- redirect to react client application 
+```bash
+.\PrivateSub\client\private-sub
+```
+- make sure the node package.json is located in folder
+
+![image](https://user-images.githubusercontent.com/54970142/184522777-60a7523e-0fb4-4b16-895e-4c2a1aa0c03d.png)
+
+- first need to install node modules dependencies
+```bash
+npm install 
+```
+
+-to start application with port 8080 :
 
 ```bash
 npm start
